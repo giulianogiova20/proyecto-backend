@@ -1,4 +1,4 @@
-import { mariaDBOptions } from '../../DB/configDB'
+/* import { mariaDBOptions } from '../../DB/configDB'
 import { Knex } from 'knex'
 import { Error, Product, StoredProduct } from '../interfaces'
 
@@ -92,4 +92,4 @@ class ProductsContainer {
 
 }
 
-export default new ProductsContainer(mariaDBOptions, 'products')
+export default new ProductsContainer(mariaDBOptions, 'products') */

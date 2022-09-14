@@ -1,4 +1,4 @@
-import { Router } from 'express'
+/* import { Router } from 'express'
 const productsRouter = Router()
 
 import {getAll, getById, addProduct, updateProduct, deleteProduct} from '../controllers/products'
@@ -14,4 +14,4 @@ productsRouter.delete("/products/:id", deleteProduct)
 //FAKER Endpoint
 productsRouter.get("/products-test", getFakerProducts)//Trae todos los productos generados con Faker.
 
-export default productsRouter
+export default productsRouter */

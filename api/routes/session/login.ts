@@ -4,6 +4,7 @@ import { Strategy } from 'passport-local'
 import User from '../../models/schema/user'
 
 import {renderLogin, login, renderFailedLogin} from "../../controllers/session"
+import Logger from '../../utils/logger'
 
 const sessionLogin = Router()
 
@@ -19,7 +20,7 @@ passport.use("login", new Strategy(
 			if (!user) return done(null, false, { message: "User doesn't exist" }) //2)
 			const valid = await user.comparePassword(password, user.password)
 			if (!valid) return done(null, false, { message: "Wrong password" }) //2)
-			console.log(user)
+			Logger.info(user)
 			return done(null, user) //1)
 		}
 		catch (err) {

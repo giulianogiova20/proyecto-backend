@@ -2,8 +2,8 @@ import { Router } from 'express'
 import passport from 'passport'
 import { Strategy } from 'passport-local'
 import User from '../../models/schema/user'
-
 import {renderSignUp, signUp, renderFailedSignup} from "../../controllers/session"
+import Logger from '../../utils/logger'
 
 const sessionSignup = Router()
 
@@ -24,7 +24,7 @@ passport.use("signup", new Strategy(
              if(err.code === 11000) {
                 return done(null, false, { message: "User already exists" }) //2)
             }
-            console.log(err)
+            Logger.error(err)
             return done(err) //3) 
               
             }

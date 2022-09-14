@@ -2,7 +2,7 @@
 import express from 'express'
 import session from 'express-session'
 //Models
-import products from './api/models/ProductsContainer';
+/* import products from './api/models/ProductsContainer'; */
 import chat from './api/models/ChatContainer'
 import User from './api/models/schema/user'
 //Server Config
@@ -16,7 +16,7 @@ import sessionLogin from "./api/routes/session/login"
 import sessionLogout from "./api/routes/session/logout"
 import sessionSignup from "./api/routes/session/signup"
 //Products Routes
-import productsRouter from './api/routes/products'
+/* import productsRouter from './api/routes/products' */
 //Cart Routes
 import cartRouter from './api/routes/cart'
 //Others
@@ -94,13 +94,13 @@ let messages: any[] = []
 io.on('connection', async (socket) => {
      
 
-    socket.emit('server:products', await products.getAll())
+    //socket.emit('server:products', await products.getAll())
     socket.emit('server:message', messages)
 
-    socket.on('client:product', async (productInfo) => {
+    /* socket.on('client:product', async (productInfo) => {
         products.addProduct(productInfo)
         io.emit('server:products', await products.getAll())
-    })
+    }) */
 
     socket.on('client:message', async (messageInfo) => {
         messageInfo.id = messages.length+1
@@ -178,14 +178,15 @@ passport.deserializeUser(async (id, done) => {
 
 //RUTAS
 
-/* app.use("/login", sessionLogin)
+app.use("/login", sessionLogin)
 app.use("/logout", sessionLogout)
 app.use("/signup", sessionSignup)
-app.use('/api', productsRouter, cartRouter)
+//app.use('/api', productsRouter, cartRouter)
+app.use('/api', cartRouter)
 
 app.get("/", auth, async (req, res: express.Response) => {
 	res.render("home", { logged: true, user: req.user })
-}) */
+})
 
 app.use("/info", info)
 app.use("/infoCompressed", compression(), info)

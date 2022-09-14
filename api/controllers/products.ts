@@ -1,4 +1,4 @@
-import { Request, Response } from 'express'
+/* import { Request, Response } from 'express'
 import ProductsContainer from '../models/ProductsContainer'
 
 const getAll = async(req: Request, res: Response) => {
@@ -43,4 +43,4 @@ const deleteProduct = async(req: Request, res: Response) => {
 }
 
 
-export { addProduct, deleteProduct, getAll, getById, updateProduct}
+export { addProduct, deleteProduct, getAll, getById, updateProduct} */
