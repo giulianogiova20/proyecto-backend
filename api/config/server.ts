@@ -1,4 +1,4 @@
-import { config } from "dotenv"
+/* import { config } from "dotenv"
 import * as path from "path"
 import minimist from 'minimist'
 
@@ -15,4 +15,4 @@ export const serverConfig = {
 export const args = minimist(process.argv.slice(2), {
     alias: { m: "modo", p: "port", d: "debug" },
     default: { modo: "prod", port: 8080, debug: false },
-  });
+  }); */

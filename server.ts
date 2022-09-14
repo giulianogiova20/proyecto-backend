@@ -6,7 +6,7 @@ import session from 'express-session'
 import chat from './api/models/ChatContainer'
 import User from './api/models/schema/user'
 //Server Config
-import {serverConfig, args} from "./api/config/server"
+/* import {serverConfig, args} from "./api/config/server" */
 import config from './api/config/mongoDBatlas'
 import MongoStore from "connect-mongo"
 import mongoose from 'mongoose'
@@ -56,7 +56,8 @@ Logger.error("Error");
 
 //DOTENV
 //dotenv.config()
-const port = args.p || process.env.PORT || serverConfig.PORT || 8080
+//const port = args.p || process.env.PORT || serverConfig.PORT || 8080
+const port = process.env.PORT || 8080
 
 //SERVER
 const app = express()
