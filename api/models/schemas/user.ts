@@ -1,15 +1,15 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
-
-export interface User {
-  email: string
-  password: string
-  comparePassword(reqPassword: string, password: string): Promise<boolean>
-}
+import { User } from "../../interfaces"
 
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, lowercase: true, trim: true, unique: true },
   password: { type: String, required: true },
+  name:   { type: String, required: true },
+  address: { type: String, required: true },
+  age: { type: Number, required: true },
+  phoneNumber: { type: String, required: true },
+  picture: { type: String, required: true },
 }, { collection: "users" })
 
 

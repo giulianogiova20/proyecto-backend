@@ -16,8 +16,9 @@ export const renderLogin = (req: Request, res: Response) => {
 
 //LOGOUT
 export const logout = (req: Request, res: Response) => {
+	const user = req.user
     req.session.destroy(() => {
-        res.render('login')
+        res.render('logout', {user: user})
     })
 }
 

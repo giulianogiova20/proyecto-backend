@@ -5,26 +5,20 @@ import session from 'express-session'
 import { productDao, chatDao } from './api/models/daos'
 import User from './api/models/schemas/user'
 //Server Config
-/* import {serverConfig, args} from "./api/config/server" */
 import config from './api/config/mongoDBatlas'
 import MongoStore from "connect-mongo"
 import { Server as IOServer } from 'socket.io'
-//Session Routes
-import sessionLogin from "./api/routes/session/login"
-import sessionLogout from "./api/routes/session/logout"
-import sessionSignup from "./api/routes/session/signup"
-//Products Routes
-import productsRouter from './api/routes/products'
-//Cart Routes
-import cartRouter from './api/routes/cart'
-//Info Routes
-import info from "./api/routes/info"
+//Routes
+import { sessionLogin, sessionSignup, sessionLogout, cartRouter, productsRouter, info } from "./api/routes"
 //Others
 import flash from "connect-flash"
 import auth from './api/middlewares/auth'
 import normalizeAndDenormalize from './api/utils/normalizr'
 import cookieParser from 'cookie-parser'
 import passport from 'passport'
+import { passportLoad } from './api/utils/passport'
+import compression from 'compression'
+import Logger from './api/utils/logger'
 //import dotenv from 'dotenv'
 import path from 'path'
 
@@ -40,16 +34,6 @@ declare module 'express-session' {
 		admin: boolean
 	}
 }
-
-//Desafio Clase 32
-import compression from 'compression'
-import Logger from './api/utils/logger'
-import { StoredProduct } from './api/interfaces'
-// Test loggers
-Logger.info("Información");
-Logger.debug("Debug");
-Logger.warn("Advertencia");
-Logger.error("Error");
 
 //DOTENV
 //dotenv.config()
@@ -150,15 +134,7 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
-
-passport.serializeUser((user: any, done: any) => {
-  done(null, user._id)
-})
-
-passport.deserializeUser(async (id, done) => {
-  const user = await User.findById(id);
-  done(null, user)
-})
+passportLoad(passport)
 
 //RUTAS
 
