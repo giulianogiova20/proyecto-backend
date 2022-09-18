@@ -16,10 +16,15 @@ export const renderLogin = (req: Request, res: Response) => {
 
 //LOGOUT
 export const logout = (req: Request, res: Response) => {
-	const user = req.user
-    req.session.destroy(() => {
-        res.render('logout', {user: user})
-    })
+	if(req.isAuthenticated()){
+		const user = req.user
+		req.session.destroy(() => {
+			res.render('logout', {user: user})
+		})
+	}
+    else {
+		res.redirect('/')
+	}
 }
 
 
@@ -53,3 +58,18 @@ export const renderFailedLogin = (req: Request, res: Response) => {
 export const renderHome = (req: Request, res: Response) => {
 	res.render('home', {user: req.user})
   }
+
+//UPLOAD
+export const renderUpload = (req: Request, res: Response) => {
+	if (req.isAuthenticated()){
+		res.render('upload')
+	} else {
+		res.render('login')
+	}
+  }
+
+//UPLOAD SUCCESS  
+export const uploadSuccess = async (req: Request, res: Response, next: NextFunction) => {
+	res.status(201).render('uploadSuccess')
+	next()
+}

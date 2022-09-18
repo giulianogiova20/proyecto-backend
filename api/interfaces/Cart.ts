@@ -1,7 +1,7 @@
 import { StoredProduct } from './StoredProduct'
 
 export interface Cart {
-  cartId: number
+  cartId: any
   timestamp: string
   products: StoredProduct[]
 }

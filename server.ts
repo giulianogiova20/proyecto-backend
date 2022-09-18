@@ -1,5 +1,5 @@
 //Express
-import express from 'express'
+import express, { NextFunction } from 'express'
 import session from 'express-session'
 //Models
 import { productDao, chatDao } from './api/models/daos'
@@ -24,7 +24,6 @@ import path from 'path'
 
 import cluster from 'cluster';
 import os from 'os';
-
 
 declare module 'express-session' {
 	export interface SessionData {
@@ -101,6 +100,7 @@ io.on('connection', async (socket) => {
 
 //MIDDLEWARES
 app.use(express.static(path.join(__dirname, '../public')))
+app.use(express.static(path.join(__dirname, '../uploads')))
 app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }))
@@ -109,7 +109,6 @@ app.use(express.urlencoded({ extended: true }))
 // CONFIGURACION MOTOR DE PLANTILLAS EJS    
 app.set('views', path.join(__dirname, '../api/views'))
 app.set('view engine', 'ejs')
-
 
 const mongoOptions: any = { useNewUrlParser: true, useUnifiedTopology: true }
 app.use(

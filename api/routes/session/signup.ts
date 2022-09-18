@@ -1,11 +1,36 @@
 import { Router } from 'express'
 import passport from 'passport'
-import {renderSignUp, signUp, renderFailedSignup} from "../../controllers/session"
+import {renderSignUp, signUp, renderFailedSignup, renderUpload, uploadSuccess} from "../../controllers/session"
+import user from '../../models/schemas/user'
+import { upload } from '../../utils/multer'
 
-export const sessionSignup = Router()  
+export const sessionSignup = Router() 
+
 
 sessionSignup.get('/', renderSignUp)
 sessionSignup.post('/', passport.authenticate('signup', { failureRedirect: '/signup/failed', failureFlash: true}), signUp)
+sessionSignup.get('/upload', renderUpload)
+sessionSignup.post('/upload', upload.single('picture'), async (req: any, res: any, next: any) => {
+    const file = req.file
+    if(!file) {
+      const error = {message: "no subiste nada", statusCode:400}
+        return next(error)
+    }
+
+    try {
+        const updatedData = await user.updateOne({ _id: req.user.id, picture: `./${file.filename}` })
+  
+        if (updatedData.matchedCount === 0) {
+            const error = {message: "User not found", statusCode:400}
+            return next(error)
+        } 
+               
+    } catch (err) {
+        console.log('Method update: ', err)
+    }
+
+    next()
+  }, uploadSuccess)
 sessionSignup.get('/failed', renderFailedSignup)
 
 /* FAILURE REDIRECT EXCPECTS: (err, user, info)

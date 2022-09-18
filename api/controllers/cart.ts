@@ -48,7 +48,7 @@ export const deleteCart = async (req: Request, res: Response) => {
 export const getProductsByCartId = async (req: Request, res: Response) => {
     const { id } = req.params
   
-    const cart = await cartDao.getProductsByCartId(Number(id))
+    const cart = await cartDao.getProductsByCartId(id)
     if (cart instanceof Error) {
       return res.status(500).json({
         error: -1,

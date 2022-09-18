@@ -31,14 +31,15 @@ export function passportLoad(passport: PassportStatic) {
       usernameField: 'email'
     },
       async (req: any, email: string, password: string, done: any) => {
-          const newUser = new User({
+
+        const newUser = new User({
             email,
             password,
             name: req.body.name,
             address: req.body.address,
             age: req.body.age,
             phoneNumber: req.body.phoneNumber,
-            picture: req.body.picture
+            picture: "./avatar.png"
           })
           try {
               await newUser.save()
@@ -52,6 +53,7 @@ export function passportLoad(passport: PassportStatic) {
                 
               }
           }
+
     ))
 
     passport.serializeUser((user: any, done: any) => {
