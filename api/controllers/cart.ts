@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
-import CartContainer from '../models/CartContainer'
+import { cartDao } from '../models/daos'
 
 export const createCart = async (req: Request, res: Response) => {
-    const cartId = await CartContainer.createNewCart()
+    const cartId = await cartDao.createNewCart()
   
     if (typeof cartId !== 'number') {
       return res.status(500).json({
@@ -19,7 +19,7 @@ export const createCart = async (req: Request, res: Response) => {
 export const deleteCart = async (req: Request, res: Response) => {
     const { id } = req.params
 
-    const cart = await CartContainer.deleteCartById(Number(id))
+    const cart = await cartDao.deleteCartById(Number(id))
 
     if (cart instanceof Error) {
         return res.status(500).json({
@@ -48,7 +48,7 @@ export const deleteCart = async (req: Request, res: Response) => {
 export const getProductsByCartId = async (req: Request, res: Response) => {
     const { id } = req.params
   
-    const cart = await CartContainer.getProductsByCartId(Number(id))
+    const cart = await cartDao.getProductsByCartId(Number(id))
     if (cart instanceof Error) {
       return res.status(500).json({
         error: -1,
@@ -64,7 +64,7 @@ export const getProductsByCartId = async (req: Request, res: Response) => {
     const { id } = req.params
     const product = req.body
   
-    const cart = await CartContainer.addProductsById(Number(id), product)
+    const cart = await cartDao.addProductsById(Number(id), product)
   
     if (cart instanceof Error) {
       return res.status(500).json({
@@ -81,7 +81,7 @@ export const getProductsByCartId = async (req: Request, res: Response) => {
   export const deleteProductByCartId = async (req: Request, res: Response) => {
     const { id, id_prod } = req.params
   
-    const cart = await CartContainer.deleteProductByCartId(Number(id), Number(id_prod))
+    const cart = await cartDao.deleteProductByCartId(Number(id), Number(id_prod))
   
     if (cart instanceof Error) {
       return res.status(500).json({

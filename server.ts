@@ -2,23 +2,23 @@
 import express from 'express'
 import session from 'express-session'
 //Models
-/* import products from './api/models/ProductsContainer'; */
-import chat from './api/models/ChatContainer'
-import User from './api/models/schema/user'
+import { productDao, chatDao } from './api/models/daos'
+import User from './api/models/schemas/user'
 //Server Config
 /* import {serverConfig, args} from "./api/config/server" */
 import config from './api/config/mongoDBatlas'
 import MongoStore from "connect-mongo"
-import mongoose from 'mongoose'
 import { Server as IOServer } from 'socket.io'
 //Session Routes
 import sessionLogin from "./api/routes/session/login"
 import sessionLogout from "./api/routes/session/logout"
 import sessionSignup from "./api/routes/session/signup"
 //Products Routes
-/* import productsRouter from './api/routes/products' */
+import productsRouter from './api/routes/products'
 //Cart Routes
 import cartRouter from './api/routes/cart'
+//Info Routes
+import info from "./api/routes/info"
 //Others
 import flash from "connect-flash"
 import auth from './api/middlewares/auth'
@@ -32,10 +32,6 @@ import cluster from 'cluster';
 import os from 'os';
 
 
-//Desafio Clase 28
-import randomRouter from "./api/routes/randoms"
-import info from "./api/routes/info"
-
 declare module 'express-session' {
 	export interface SessionData {
 		logged: boolean
@@ -48,6 +44,7 @@ declare module 'express-session' {
 //Desafio Clase 32
 import compression from 'compression'
 import Logger from './api/utils/logger'
+import { StoredProduct } from './api/interfaces'
 // Test loggers
 Logger.info("Información");
 Logger.debug("Debug");
@@ -81,8 +78,6 @@ if ( process.argv[3] === "cluster" && cluster.isPrimary ) {
 
 //Si entramos en modo distinto de CLUSTER o NO es un proceso primario.
 
-app.use('/api/randoms', randomRouter)
-
 const serverExpress = app.listen(port, () => {
     Logger.info(`Server listening on port ${port}.`, `Process ID: ${process.pid}.`)
 })
@@ -93,27 +88,26 @@ const io = new IOServer(serverExpress)
 let messages: any[] = []
 
 io.on('connection', async (socket) => {
-     
-
-    //socket.emit('server:products', await products.getAll())
+    Logger.info(`New User connected: ${socket.id}`)
+    socket.emit('server:products', await productDao.getAll())
     socket.emit('server:message', messages)
 
-    /* socket.on('client:product', async (productInfo) => {
-        products.addProduct(productInfo)
-        io.emit('server:products', await products.getAll())
-    }) */
+    socket.on('client:product', async (productInfo) => {
+    await productDao.addProduct(productInfo)
+    io.emit('server:products', await productDao.getAll())
+    }) 
 
     socket.on('client:message', async (messageInfo) => {
         messageInfo.id = messages.length+1
         messages.push(messageInfo)
-        chat.writeChatToFile(messages)
+        chatDao.writeChatToFile(messages)
         //compression rate
         const denormalizedMessages = messages
         const normalizedMessages = normalizeAndDenormalize('normalize', messages)
         const lengthNormalized = JSON.stringify(normalizedMessages).length;
         const lengthDenormalized = JSON.stringify(denormalizedMessages).length;
         let compressionRate = Math.round((lengthNormalized*100) / lengthDenormalized)
-        console.log(`Compression Rate: ${(100 - compressionRate).toFixed(2)}%`)
+        Logger.info(`Compression Rate: ${(100 - compressionRate).toFixed(2)}%`)
         io.emit('server:message', messages)
     })
 })
@@ -150,17 +144,6 @@ app.use(
       },
     })
   )
-
-mongoose.connect(
-  config.mongoDB.URI,
-  mongoOptions,
-  (err) => {
-      try {
-          Logger.info('Connected to MongoDB Atlas')
-      } catch (err) {
-          throw err
-      }
-  })
   
 
 //PASSPORT
@@ -182,8 +165,8 @@ passport.deserializeUser(async (id, done) => {
 app.use("/login", sessionLogin)
 app.use("/logout", sessionLogout)
 app.use("/signup", sessionSignup)
-//app.use('/api', productsRouter, cartRouter)
-app.use('/api', cartRouter)
+app.use('/api', productsRouter, cartRouter)
+
 
 app.get("/", auth, async (req, res: express.Response) => {
 	res.render("home", { logged: true, user: req.user })

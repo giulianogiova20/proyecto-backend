@@ -1,6 +1,6 @@
 import fs from 'fs'
-import FileSystemContainer from './fsContainer'
-import normalizeAndDenormalize from "../utils/normalizr"
+import FileSystemContainer from '../../containers/filesystemContainer'
+import normalizeAndDenormalize from "../../../utils/normalizr"
 import util from "util";
 
 function print(objeto: any) {
@@ -8,7 +8,7 @@ function print(objeto: any) {
 }
 
 
-class ChatContainer extends FileSystemContainer {
+class daoChatFilesystem extends FileSystemContainer {
   constructor(){
       super('./DB/chat.json')
   }
@@ -43,4 +43,4 @@ class ChatContainer extends FileSystemContainer {
 
 }
 
-export default new ChatContainer
+export default new daoChatFilesystem

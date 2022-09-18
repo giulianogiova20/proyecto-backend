@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import passport from 'passport'
 import { Strategy } from 'passport-local'
-import User from '../../models/schema/user'
+import User from '../../models/schemas/user'
 import {renderSignUp, signUp, renderFailedSignup} from "../../controllers/session"
 import Logger from '../../utils/logger'
 

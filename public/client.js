@@ -15,7 +15,6 @@ const userAliasInput = document.querySelector('#userAlias')
 const userAvatarInput = document.querySelector('#userAvatar')
 const messageInput = document.querySelector('#messageInput')
 const messagesPool = document.querySelector('#messagesPool')
-const compressionOutput = document.querySelector('#compression')
 
 
 const sendMessage = () => {
@@ -51,10 +50,10 @@ const renderMessages = async (messages) => {
 
 const sendProduct = () => {
     try {
-        const title = productTitleInput.value
+        const name = productTitleInput.value
         const price = Number(productPriceInput.value)
-        const thumbnail = productThumbnailInput.value
-        socket.emit('client:product', { title, price, thumbnail })
+        const photoURL = productThumbnailInput.value
+        socket.emit('client:product', { name, price, photoURL })
     } catch (error) {
         console.log(`Han error has ocurred: ${error}`)
     }

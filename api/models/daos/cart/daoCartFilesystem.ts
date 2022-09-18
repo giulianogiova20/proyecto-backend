@@ -1,18 +1,18 @@
 import fs from 'fs'
-import { Cart,  StoredProduct } from '../interfaces'
+import FileContainer from '../../containers/filesystemContainer'
+import { Cart,  StoredProduct } from '../../../interfaces'
 
-class CartContainer {
-  private static filePath: string
+class CartDAOFilesystem extends FileContainer {
   private readonly productFilePath: string
 
-  constructor(filePath: string) {
-    CartContainer.filePath = filePath
-    this.productFilePath = './api/data/products.txt'
+  constructor() {
+    super('./api/DB/cart.txt')
+    this.productFilePath = './api/DB/products.txt'
   }
 
   private readonly writeFile = async (data: Cart[]): Promise<void> => {
     try {
-      await fs.promises.writeFile(CartContainer.filePath, JSON.stringify(data))
+      await fs.promises.writeFile(this.filePath, JSON.stringify(data))
     } catch (err: any) {
       console.log('Method: writeFile, ', err)
     }
@@ -20,13 +20,13 @@ class CartContainer {
 
   private readonly readCartFile = async (): Promise<Cart[]> => {
     try {
-      return (await fs.promises.readFile(CartContainer.filePath, 'utf8'))
-        ? JSON.parse(await fs.promises.readFile(CartContainer.filePath, 'utf8'))
+      return (await fs.promises.readFile(this.filePath, 'utf8'))
+        ? JSON.parse(await fs.promises.readFile(this.filePath, 'utf8'))
         : ([] as Cart[])
     } catch (err: any) {
       if (err.errno === -2) {
         try {
-          await fs.promises.writeFile(CartContainer.filePath, JSON.stringify([]))
+          await fs.promises.writeFile(this.filePath, JSON.stringify([]))
           return [] as Cart[]
         } catch (err: any) {
           console.error(
@@ -92,7 +92,7 @@ class CartContainer {
         if (cart.length === 0 || typeof cart === 'undefined') {
             return -1
         } else {
-            const newCart = cart.filter((object: Cart) => object.cartId !== id)
+            const newCart = cart.filter((object: Cart) => object.cartId !== Number(id))
 
             if (newCart.length === cart.length) {
                 return -2
@@ -110,7 +110,7 @@ class CartContainer {
     public getProductsByCartId = async (id: number): Promise<StoredProduct[] | Error> => {
         try {
           const cart = await this.readCartFile()
-          const foundCart = cart.find((object: Cart) => object.cartId === id)
+          const foundCart = cart.find((object: Cart) => object.cartId === Number(id))
     
           if (typeof foundCart !== 'undefined') {
             const cartProducts = foundCart.products
@@ -133,23 +133,23 @@ class CartContainer {
       public addProductsById = async (id: number, productId: {id: number}): Promise<void | StoredProduct[] | Error> => {
         try {
           const carts = await this.readCartFile()
-          const foundCart = carts.find((object: Cart) => object.cartId === id)
+          const foundCart = carts.find((object: Cart) => object.cartId === Number(id))
     
           const products = await this.readProductsFile()
-          const nProductId = Number(productId.id)
           const productToAdd = products.filter((object: StoredProduct) =>{
-            if (object.id === nProductId){
+            if (object.id === Number(productId.id)){
                 return object
             }
           })
           if (productToAdd.length === 0) {
-            return new Error(`Product with id: ${nProductId} not found`)
+            return new Error(`Product with id: ${Number(productId.id)} not found`)
           }
           else {
             if (typeof foundCart !== 'undefined' && typeof productToAdd !== 'undefined') {
+           
                 const newProducts = [...foundCart.products, ...productToAdd]
                 const newCart = carts.map((object: Cart) =>
-                  object.cartId === id ? { ...object, products: newProducts } : object
+                  object.cartId === Number(id) ? { ...object, products: newProducts } : object
                 )
         
                 await this.writeFile(newCart)
@@ -166,19 +166,19 @@ class CartContainer {
       public deleteProductByCartId = async (id: number, productId: number): Promise<void | Error> => {
         try {
           const carts = await this.readCartFile()
-          const foundCart = carts.find((object: Cart) => object.cartId === id)
+          const foundCart = carts.find((object: Cart) => object.cartId === Number(id))
     
           if (typeof foundCart !== 'undefined') {
             const newProducts = foundCart.products.filter(
-              (object) => object.id !== productId
+              (object) => object.id !== Number(productId)
             )
             if (newProducts.length === foundCart.products.length)
             {
-                return new Error(`Product with id: ${productId} not found in cart id: ${id}`)
+                return new Error(`Product with id: ${Number(productId)} not found in cart id: ${Number(id)}`)
             }
             else {
                 const newCart = carts.map((object: Cart) =>
-                object.cartId === id ? { ...object, products: newProducts } : object )
+                object.cartId === Number(id) ? { ...object, products: newProducts } : object )
                 await this.writeFile(newCart) 
             }
             }
@@ -191,7 +191,6 @@ class CartContainer {
           return err
         }
       }
-    
 }
 
-export default new CartContainer('./api/DB/cart.txt')
+export default new CartDAOFilesystem()

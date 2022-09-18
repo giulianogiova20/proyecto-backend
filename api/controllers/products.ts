@@ -1,15 +1,15 @@
-/* import { Request, Response } from 'express'
-import ProductsContainer from '../models/ProductsContainer'
+import { Request, Response } from 'express'
+import { productDao } from '../models/daos'
 
 const getAll = async(req: Request, res: Response) => {
-    const products = await ProductsContainer.getAll()
+    const products = await productDao.getAll()
 
     res.json(products)
 }
 
 const getById = async(req: Request, res: Response)  => {
     const { id } = req.params
-    const body = await ProductsContainer.getById(Number(id))
+    const body = await productDao.getById(Number(id))
   
     res.json(body)
 }
@@ -18,7 +18,7 @@ const getById = async(req: Request, res: Response)  => {
 const addProduct = async(req: Request, res: Response) => {
     const product = req.body
   
-    const storedProduct =  await ProductsContainer.addProduct(product)
+    const storedProduct =  await productDao.addProduct(product)
     res.json(storedProduct)
 }
 
@@ -26,7 +26,7 @@ const updateProduct = async(req: Request, res: Response) => {
     const { id } = req.params
     const product = req.body
   
-    await ProductsContainer.updateProduct(Number(id), product)
+    await productDao.updateProduct(Number(id), product)
   
     res.json({
       msg: `producto ${id} actualizado`,
@@ -35,7 +35,7 @@ const updateProduct = async(req: Request, res: Response) => {
 
 const deleteProduct = async(req: Request, res: Response) => {
     const { id } = req.params
-    const deletedProduct = await ProductsContainer.deleteProduct(Number(id))
+    const deletedProduct = await productDao.deleteProduct(Number(id))
   
     res.json({
         deletedProduct
@@ -43,4 +43,4 @@ const deleteProduct = async(req: Request, res: Response) => {
 }
 
 
-export { addProduct, deleteProduct, getAll, getById, updateProduct} */
+export { addProduct, deleteProduct, getAll, getById, updateProduct}
