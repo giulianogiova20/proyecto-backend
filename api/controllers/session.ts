@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
+import sendEmail from '../utils/nodemailer'
 
 //LOGIN  
 export const login = async (req: Request, res: Response, next: NextFunction) => {
@@ -39,6 +40,7 @@ export const renderSignUp = async (req: Request, res: Response) => {
 
 export const signUp = async (req: Request, res: Response, next: NextFunction) => {
 	res.status(201).render('createdUser', { user: req.user })
+	sendEmail()
 	next()
 }
 
