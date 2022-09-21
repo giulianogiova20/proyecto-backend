@@ -10,6 +10,8 @@ import MongoStore from "connect-mongo"
 import { Server as IOServer } from 'socket.io'
 //Routes
 import { sessionLogin, sessionSignup, sessionLogout, cartRouter, productsRouter, info } from "./api/routes"
+import { getAll } from './api/controllers/products'
+
 //Others
 import flash from "connect-flash"
 import auth from './api/middlewares/auth'
@@ -67,7 +69,7 @@ const serverExpress = app.listen(port, () => {
 serverExpress.on('error', (err) => Logger.error(`An error has ocurred when starting: ${err}`))
 
 //SOCKET
-const io = new IOServer(serverExpress)
+/* const io = new IOServer(serverExpress)
 let messages: any[] = []
 
 io.on('connection', async (socket) => {
@@ -93,9 +95,7 @@ io.on('connection', async (socket) => {
         Logger.info(`Compression Rate: ${(100 - compressionRate).toFixed(2)}%`)
         io.emit('server:message', messages)
     })
-})
-
-
+}) */
 }
 
 //MIDDLEWARES
@@ -144,7 +144,8 @@ app.use('/api', productsRouter, cartRouter)
 
 
 app.get("/", auth, async (req, res: express.Response) => {
-	res.render("home", { logged: true, user: req.user })
+  const products = await getAll(req, res)
+	res.render("home", { logged: true, user: req.user, products: products })
 })
 
 app.use("/info", info)

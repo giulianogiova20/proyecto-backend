@@ -3,8 +3,7 @@ import { productDao } from '../models/daos'
 
 const getAll = async(req: Request, res: Response) => {
     const products = await productDao.getAll()
-
-    res.json(products)
+    return products
 }
 
 const getById = async(req: Request, res: Response)  => {
@@ -17,9 +16,8 @@ const getById = async(req: Request, res: Response)  => {
 
 const addProduct = async(req: Request, res: Response) => {
     const product = req.body
-  
-    const storedProduct =  await productDao.addProduct(product)
-    res.json(storedProduct)
+    await productDao.addProduct(product)
+    res.redirect('/api/addProdForm')
 }
 
 const updateProduct = async(req: Request, res: Response) => {

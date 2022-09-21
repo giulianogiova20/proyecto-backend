@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
   age: { type: Number, required: true },
   phoneNumber: { type: String, required: true },
   picture: { type: String, required: false },
+  isAdmin: { type: String, required: true  },
 }, { collection: "users" })
 
 

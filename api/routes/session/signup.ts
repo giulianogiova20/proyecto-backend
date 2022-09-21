@@ -13,12 +13,12 @@ sessionSignup.get('/upload', renderUpload)
 sessionSignup.post('/upload', upload.single('picture'), async (req: any, res: any, next: any) => {
     const file = req.file
     if(!file) {
-      const error = {message: "no subiste nada", statusCode:400}
+      const error = {message: "Error when uploading file.", statusCode:400}
         return next(error)
     }
 
     try {
-        const updatedData = await user.updateOne({ _id: req.user.id, picture: `./${file.filename}` })
+        const updatedData = await user.updateOne({ _id: req.user.id, picture: `${file.filename}` })
   
         if (updatedData.matchedCount === 0) {
             const error = {message: "User not found", statusCode:400}
