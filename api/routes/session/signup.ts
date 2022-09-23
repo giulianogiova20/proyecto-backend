@@ -18,7 +18,17 @@ sessionSignup.post('/upload', upload.single('picture'), async (req: any, res: an
     }
 
     try {
-        const updatedData = await user.updateOne({ _id: req.user.id, picture: `${file.filename}` })
+        const newData = {
+          email: req.user.email,
+          passport: req.user.password,
+          address: req.user.address,
+          age: req.user.age,
+          phoneNumber: req.user.phoneNumber,
+          picture: `${file.filename}`,
+          isAdmin: req.user.isAdmin
+        }
+
+        const updatedData = await user.updateOne({ _id: req.user.id }, newData)
   
         if (updatedData.matchedCount === 0) {
             const error = {message: "User not found", statusCode:400}

@@ -40,7 +40,7 @@ export function passportLoad(passport: PassportStatic) {
             age: req.body.age,
             phoneNumber: req.body.phoneNumber,
             picture: "avatar.png",
-            isAdmin: 'false'
+            isAdmin: 'false',
           })
           try {
               await newUser.save()
@@ -51,7 +51,6 @@ export function passportLoad(passport: PassportStatic) {
               }
               Logger.error(err)
               return done(err) //3) 
-                
               }
           }
 

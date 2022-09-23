@@ -64,7 +64,7 @@ if ( process.argv[3] === "cluster" && cluster.isPrimary ) {
 //Si entramos en modo distinto de CLUSTER o NO es un proceso primario.
 
 const serverExpress = app.listen(port, () => {
-    Logger.info(`Server listening on port ${port}.`, `Process ID: ${process.pid}.`)
+    Logger.info(`Server listening on port ${port}.`)
 })
 serverExpress.on('error', (err) => Logger.error(`An error has ocurred when starting: ${err}`))
 

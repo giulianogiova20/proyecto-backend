@@ -1,17 +1,19 @@
+import { NextFunction } from 'express'
+import Logger from '../../../utils/logger'
 import MongoDBContainer from '../../containers/mongoDbContainer'
 import cartModel from '../../schemas/cartSchema'
+import mongoose from 'mongoose'
 
 class CartsDAOMongoDB extends MongoDBContainer {
   constructor() {
     super(cartModel)
   }
 
-  async createNewCart() {
+  async createNewCart(user: any) {
     try {
-      const cart = new this.model({})
-      const { _id } = await cart.save()
-
-      return _id
+      //const cart = new this.model({user: {id: user.id, username: user.email}, products: []})
+      const cart = new this.model({user: user.id, products: []})
+      await cart.save()
     } catch (err) {
       console.log(err)
     }
@@ -31,14 +33,15 @@ class CartsDAOMongoDB extends MongoDBContainer {
     }
   }
 
-  async getProductsByCartId(id: any) {
+  async getProductsByCartId(user: any) {
     try {
-      const cart: any = await this.model.findOne({ _id: id })
-
+      const cart: any = await this.model.findOne({ user: user.id })
+      Logger.info(`Cart: ${cart}`)
       if (cart === null) {
         return { error: 'Cart not found' }
       } else {
         const foundItemsInCart = cart.products
+        Logger.info(`Cart: ${foundItemsInCart}`)
         return foundItemsInCart
       }
       
@@ -47,27 +50,28 @@ class CartsDAOMongoDB extends MongoDBContainer {
     }
   }
 
-  async addProductsById(id: any, product: {id: any}) {
+  async addProductsById(product: any, user: any) {
     try {
-      const cart: any = await this.model.findOne({ _id: id })
-
+      
+      const cart: any = await this.model.findOne({ user: user.id })
+      Logger.info(`Cart: ${cart}`)
       if (cart === null) {
         return { error: 'Cart not found' }
       } else {
+        
         const newCartProduct = await this.model.updateOne(
-          { _id: id },
+          { _id: cart._id },
           {
             $push: {
-              products: {
-                product: product
-              }
+              products: 
+                product
             }
           }
         )
         if (newCartProduct.modifiedCount === 0) {
-          return { error: 'Product not added.' }
+          Logger.error('Product not added')
         } else {
-          return { msg: 'Product added.' }
+          Logger.info('Product added to cart')
         }
       }
     } catch (err) {

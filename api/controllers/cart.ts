@@ -1,10 +1,13 @@
 import { Request, Response } from 'express'
-import { cartDao } from '../models/daos'
+import { cartDao, productDao } from '../models/daos'
+import Logger from '../utils/logger'
+import user from '../models/schemas/user'
+import MailSender from '../utils/nodemailer2'
 
-export const createCart = async (req: Request, res: Response) => {
-    const cartId = await cartDao.createNewCart()
-  
-    if (typeof cartId !== 'number') {
+export const createCart = async (res: Response, user: any) => {
+    await cartDao.createNewCart(user)
+    Logger.info(`Cart created for user ${user.email}`)
+/*     if (typeof cartId !== 'number') {
       return res.status(500).json({
         error: -1,
         msg: 'Error creating cart',
@@ -13,7 +16,7 @@ export const createCart = async (req: Request, res: Response) => {
     }
     else {
         res.json(cartId)
-    }
+    } */
   }
 
 export const deleteCart = async (req: Request, res: Response) => {
@@ -46,25 +49,25 @@ export const deleteCart = async (req: Request, res: Response) => {
 }
 
 export const getProductsByCartId = async (req: Request, res: Response) => {
-    const { id } = req.params
+    const user = req.user
   
-    const cart = await cartDao.getProductsByCartId(id)
-    if (cart instanceof Error) {
+    const cartProducts = await cartDao.getProductsByCartId(user)
+    if (cartProducts instanceof Error) {
       return res.status(500).json({
         error: -1,
-        msg: cart.message
+        msg: cartProducts.message
       })
     }
     else {
-        res.json(cart)
+        res.render('cart', {products: cartProducts, user: user})
     }
   }
 
   export const addToCartById = async (req: Request, res: Response) => {
-    const { id } = req.params
     const product = req.body
-  
-    const cart = await cartDao.addProductsById(Number(id), product)
+    Logger.info(`ProductID: ${product}`)
+    const user = req.user
+    const cart = await cartDao.addProductsById(product, user)
   
     if (cart instanceof Error) {
       return res.status(500).json({
@@ -73,7 +76,8 @@ export const getProductsByCartId = async (req: Request, res: Response) => {
       })
     }
     else{
-        res.json(cart)
+
+      res.redirect('/api/cart')
     }
     
   }
@@ -93,4 +97,15 @@ export const getProductsByCartId = async (req: Request, res: Response) => {
         res.json(cart)
     }
     
+  }
+
+  export const cartOrder = async (req: Request, res: Response) => {
+    try {
+      const user = req.user
+      const cartProducts = await cartDao.getProductsByCartId(user)
+      MailSender.newOrder(user,cartProducts)
+      res.redirect('/api/cart')
+    } catch (error) {
+      Logger.error(error)
+    }
   }

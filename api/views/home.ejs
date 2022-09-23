@@ -18,23 +18,29 @@
         <div class="my-3">
             <h3 class="my-3 text-danger">Products List:</h3>
             <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Stock</th>
-                        <th scope="col">Thumbnail</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-group-divider" id="products">
-                        <% if(products) { %> 
-                            <%- include('./partials/products_list.ejs', { products }) %>
-                           <% } %> 
-                    </tbody>
-                </table>
+                
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Thumbnail</th>
+                            <th scope="col">ADD TO CART</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider" id="products">
+                            <% if(products) { %> 
+                                <%- include('./partials/products_list.ejs', { products }) %>
+                            <% } %> 
+                        </tbody>
+                    </table>
+                    <!-- <form id='addProd' action='/api/cart/addProduct' method='POST'>
+                    <input id="prodTitle" name="productID" type="text" placeholder="put product ID" class="form-control w-50 my-2">
+                    <button type="submit" class="btn btn-danger">Add Product</button> -->
+                </form>
             </div> 
         </div>
 
