@@ -40,32 +40,21 @@
                 </form>
             </div> 
         </div>
-
-        <!-- FORM MESSAGE -->
-
-        <!-- <h2 class="mt-5 bg-success">CHAT</h2>
-        <form id="formMessage" class="my-3">
-            <input id="userEmail" name="email" type="email" placeholder="john.doe@gmail.com" class="form-control w-50 my-2">
-            <input id="userName" name="name" type="text" placeholder="John" class="form-control w-50 my-2">
-            <input id="userLastname" name="lastname" type="text" placeholder="Doe" class="form-control w-50 my-2">
-            <input id="userAge" name="age" type="text" placeholder="18" class="form-control w-50 my-2">
-            <input id="userAlias" name="alias" type="text" placeholder="JohnDoe" class="form-control w-50 my-2">
-            <input id="userAvatar" name="avatar" type="text" placeholder="URL" class="form-control w-50 my-2">
-            <input id="messageInput" name="message" type="text" placeholder="Type..." class="form-control w-50 my-2">
-            <button type="submit" class="btn btn-success">Send</button>
-        </form> -->
-        <!-- CHAT -->
-        <!-- <div class="my-3">
-            <h3 class="my-3 text-success">MESSAGES</h3>
-            <div id="messagesPool" class="my-3 row">
-            </div>
-        </div> -->
     </div>
 
     <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js"></script>
-   <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="./client.js"></script> -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function addalert() {
+                Swal.fire({
+                    title: "Product Added to cart",
+                    background: '#161616',
+                    showConfirmButton: false,
+                    width: "200px",
+                    timer:1100,
+                })
+            }
+    </script>
 </body>
 </html>

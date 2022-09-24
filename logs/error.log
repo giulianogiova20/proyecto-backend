@@ -1,1 +1,22 @@
 
+{ level: 'error', timestamp: '2022-09-24T03:51:31.341Z' }
+{
+  message: 'Product not deleted',
+  level: 'error',
+  timestamp: '2022-09-24T03:51:46.107Z'
+}
+{
+  message: 'Product not deleted',
+  level: 'error',
+  timestamp: '2022-09-24T03:53:30.612Z'
+}
+{
+  message: 'Product not deleted',
+  level: 'error',
+  timestamp: '2022-09-24T03:57:08.996Z'
+}
+{
+  message: 'Product deleted',
+  level: 'error',
+  timestamp: '2022-09-24T03:57:47.505Z'
+}

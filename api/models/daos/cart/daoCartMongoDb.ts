@@ -15,23 +15,33 @@ class CartsDAOMongoDB extends MongoDBContainer {
       await cart.save()
   }
 
-  async deleteCartById(id: any) {
-    try {
-      const cart: any = await this.model.findOne({ _id: id })
+  async deleteCartById(user: any) {
+    const cart: any = await this.model.findOne({ user: user.id })
 
-      if (cart === null) {
-        return { error: 'Cart not found' }
+    if (cart === null) {
+      return { error: 'Cart not found' }
+    } else {
+        const cartProductsDelete = await this.model.updateOne(
+        { _id: cart._id },
+        {
+          $set: {
+            products: 
+              []
+          }
+        }
+      )
+      if (cartProductsDelete.modifiedCount === 0) {
+        Logger.error('Products not deleted from cart')
       } else {
-        await cart.remove()
+        Logger.info('Products deleted from cart')
       }
-    } catch (err) {
-      console.log(err)
     }
   }
 
+
   async getProductsByCartId(user: any) {
       const cart: any = await this.model.findOne({ user: user.id })
-      Logger.info(`Cart: ${cart}`)
+
       if (cart === null) {
         return { error: 'Cart not found' }
       } else {
@@ -41,15 +51,12 @@ class CartsDAOMongoDB extends MongoDBContainer {
       }
   }
 
-  async addProductsById(product: any, user: any) {
-    try {
-      
+  async addProductsById(product: any, user: any) {      
       const cart: any = await this.model.findOne({ user: user.id })
-      Logger.info(`Cart: ${cart}`)
+
       if (cart === null) {
         return { error: 'Cart not found' }
       } else {
-        
         const newCartProduct = await this.model.updateOne(
           { _id: cart._id },
           {
@@ -60,45 +67,35 @@ class CartsDAOMongoDB extends MongoDBContainer {
           }
         )
         if (newCartProduct.modifiedCount === 0) {
-          Logger.error('Product not added')
+          Logger.error('Product not added to cart')
         } else {
           Logger.info('Product added to cart')
         }
       }
-    } catch (err) {
-      console.log(err)
-    }
   }
 
-  async deleteProductByCartId(id: any, id_prod: any) {
-    try {
-      const cart: any = await this.model.findOne({ _id: id })
+  async deleteProductByCartId(user: any, product: any) {
+      const cart: any = await this.model.findOne({ user: user.id })
 
       if (cart === null) {
         return { error: 'Cart not found' }
       } else {
         const deleteCartProduct = await this.model.updateOne(
-          {
-            _id: id
-          },
+          { _id: cart._id },
           {
             $pull: {
-              products: {
-                product: {id: id_prod}
-              }
+              products: 
+                {id: product.id}
             }
           })
-      console.log(deleteCartProduct)
-      if (deleteCartProduct.modifiedCount === 0) {
-        return { error: 'Product not found.' }
-      } else {
-          return { msg: 'Product deleted.' }
-      }
-    }
-    } catch (err) { 
-      console.log(err)
+          if (deleteCartProduct.modifiedCount === 0) {
+            Logger.error('Product not deleted from cart')
+          } else {
+            Logger.info('Product deleted from cart')
+          }
     }
   }
+
 }
 
 export default new CartsDAOMongoDB()

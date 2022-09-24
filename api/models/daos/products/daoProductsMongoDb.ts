@@ -32,14 +32,9 @@ class ProductsDAOMongoDB extends MongoDBContainer {
 }
 
   async addProduct(product: any): Promise<any | void> {
-    try {
       const productToSave = new this.model(product)
       const productAdded = await productToSave.save() 
-
       return productAdded
-    } catch (err) {
-      console.log(err)
-    }
   }
 
   public async updateProduct(id: any, newData: any): Promise<any> {

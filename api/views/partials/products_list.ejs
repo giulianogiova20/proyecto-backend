@@ -8,7 +8,7 @@
                 <td><input name="description" type="text" hidden="true" value="<%= product.description %>"><%= product.description %></td>
                 <td><input name="stock" type="number" hidden="true" value="<%= product.stock %>"><%= product.stock %></td>
                 <td><input name="photoURL" type="text" hidden="true" value="<%= product.photoURL %>"><img style="max-width: 80px" src="<%=product.photoURL%>"></img></td>
-                <td><button type="submit" class="btn btn-danger">Add Product</button></td>
+                <td><button type="submit" onclick="addalert()" class="btn btn-success">Add Product</button></td>
             </form>
         </tr>
     <% }) %> 

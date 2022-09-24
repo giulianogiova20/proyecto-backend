@@ -17,9 +17,14 @@ const getById = async(req: Request, res: Response)  => {
 
 
 const addProduct = async(req: Request, res: Response) => {
-    const product = req.body
-    await productDao.addProduct(product)
-    res.redirect('/api/addProdForm')
+    try {
+        const product = req.body
+        await productDao.addProduct(product)
+        Logger.info('Product added')
+        res.redirect('/api/addProdForm')
+    } catch (error) {
+        Logger.error(error)
+    }
 }
 
 const updateProduct = async(req: Request, res: Response) => {

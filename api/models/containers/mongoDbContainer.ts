@@ -18,7 +18,6 @@ class MongoDBContainer {
       Logger.error(err)
     }
   }
-
 }
 
 export default MongoDBContainer

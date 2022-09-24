@@ -10,17 +10,6 @@
 <body>
     <div class="container">
             <!-- NAVBAR -->
-            <!-- <div class="d-flex justify-content-start mt-3 ">
-                <a href="/" class="btn btn-primary mt-2 mb-4 mx-3">Home</a>
-            </div> -->
-            <!-- <div class="d-flex justify-content-start mt-3 ">
-                <h1 class="mb-3">Welcome, <img src="../<%= user.picture %>" style="width: 50px; height: 50px; border-radius: 50%;"></img><span class="text-success">  <%= user.name %></span></h1>
-                <a href="/signup/upload" class="btn btn-primary mt-2 mb-4 mx-3">Add Avatar</a>
-                <a href="/" class="btn btn-primary mt-2 mb-4 mx-3">Home</a>
-                <form action='/logout' method='POST' class="mt-2 mx-3">
-                    <button type="submit" class="btn btn-danger">Logout</button>
-                </form>
-            </div> -->
                 <%- include('./partials/navbar_other.ejs', { user }) %> 
             <!-- NAVBAR -->
             <h2 class="px-3 my-4 bg-danger">Add new products</h2>
@@ -31,7 +20,7 @@
                     class="form-control w-50 my-2">
                 <input id="prodThumbnail" name="photoURL" type="text" placeholder="Url image" class="form-control w-50 my-2">
                 <input id="prodStock" name="stock" type="number" placeholder="Stock" class="form-control w-50 my-2">
-                <button type="submit" class="btn btn-danger">Add Product</button>
+                <button type="submit" onclick="delalert()" class="btn btn-danger">Add Product</button>
             </form>
             <!-- PRODUCTS FORM EXAMPLE -->
             <div class="my-3">
@@ -42,8 +31,17 @@
     </div>
     <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js"></script>
-    <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="./client.js"></script> -->
+
+    <script>
+        function delalert() {
+            Swal.fire({
+                title: "Product Added!",
+                background: '#161616',
+                showConfirmButton: false,
+                width: "200px",
+                timer:1100,
+            })
+        }
+    </script>
 </body>
 </html>
