@@ -2,7 +2,7 @@
     <% products.map(product => { %> 
         <tr>
             <form id='addProd' action='/api/cart/deleteProduct/' method='POST'>
-                <td><input name="id" type="text" hidden="true" value="<%= product.id %>"><%= product.id %></td>
+                <input name="id" type="text" hidden="true" value="<%= product.id %>">
                 <td><%= product.name %></td>
                 <td><%= product.price %></td>
                 <td><%= product.description %> </td>

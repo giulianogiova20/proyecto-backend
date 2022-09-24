@@ -1,4 +1,4 @@
-import { Request, Response } from 'express'
+import { request, Request, Response } from 'express'
 import MessageService from '../utils/messaging'
 import { cartDao, productDao } from '../models/daos'
 import Logger from '../utils/logger'
@@ -61,6 +61,7 @@ export const cartOrder = async (req: Request, res: Response) => {
   try {
     const user = req.user
     const cartProducts = await cartDao.getProductsByCartId(user)
+    await cartDao.deleteCartById(user)
     MailSender.newOrder(user,cartProducts)
     MessageService.newSMS(user)
     MessageService.newWhatsapp(user)
