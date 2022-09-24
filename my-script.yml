@@ -1,0 +1,17 @@
+config:
+  target: https://localhost:8080/
+  phases:
+    - duration: 5
+      arrivalRate: 20
+      arrivalCount: 50
+  tls:
+    rejectUnauthorized: false
+  http:
+    # Responses have to be sent within 10 seconds, or an `ETIMEDOUT` error gets raised.
+    timeout: 30
+    extendedMetrics: true
+scenarios:
+  - flow:
+      - get:
+          # add the url you need to send get request
+          url: "/"

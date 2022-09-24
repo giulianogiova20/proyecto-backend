@@ -21,4 +21,4 @@ function run(url){
 
 console.log('Running all benchmarks in parallel ...')
 
-run('http://localhost:8080/info')
+run('http://localhost:8080/api/products')

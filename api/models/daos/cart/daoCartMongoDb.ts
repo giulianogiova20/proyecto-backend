@@ -10,13 +10,9 @@ class CartsDAOMongoDB extends MongoDBContainer {
   }
 
   async createNewCart(user: any) {
-    try {
       //const cart = new this.model({user: {id: user.id, username: user.email}, products: []})
       const cart = new this.model({user: user.id, products: []})
       await cart.save()
-    } catch (err) {
-      console.log(err)
-    }
   }
 
   async deleteCartById(id: any) {
@@ -34,7 +30,6 @@ class CartsDAOMongoDB extends MongoDBContainer {
   }
 
   async getProductsByCartId(user: any) {
-    try {
       const cart: any = await this.model.findOne({ user: user.id })
       Logger.info(`Cart: ${cart}`)
       if (cart === null) {
@@ -44,10 +39,6 @@ class CartsDAOMongoDB extends MongoDBContainer {
         Logger.info(`Cart: ${foundItemsInCart}`)
         return foundItemsInCart
       }
-      
-    } catch (err) {
-      console.log(err)
-    }
   }
 
   async addProductsById(product: any, user: any) {

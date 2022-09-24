@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 
 const CartSchema = new mongoose.Schema({
-  products: [{ type: Object, required: true, ref: 'products', }],
+  products: [ { type: Object, required: true, ref: 'products', } ],
   user: { type: String, required: true},
   timestamp: {
     type: Number,

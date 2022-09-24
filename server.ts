@@ -1,13 +1,9 @@
 //Express
-import express, { NextFunction } from 'express'
+import express from 'express'
 import session from 'express-session'
-//Models
-import { productDao, chatDao } from './api/models/daos'
-import User from './api/models/schemas/user'
 //Server Config
 import config from './api/config/mongoDBatlas'
 import MongoStore from "connect-mongo"
-import { Server as IOServer } from 'socket.io'
 //Routes
 import { sessionLogin, sessionSignup, sessionLogout, cartRouter, productsRouter, info } from "./api/routes"
 import { getAll } from './api/controllers/products'
@@ -15,13 +11,11 @@ import { getAll } from './api/controllers/products'
 //Others
 import flash from "connect-flash"
 import auth from './api/middlewares/auth'
-import normalizeAndDenormalize from './api/utils/normalizr'
 import cookieParser from 'cookie-parser'
 import passport from 'passport'
 import { passportLoad } from './api/utils/passport'
 import compression from 'compression'
 import Logger from './api/utils/logger'
-//import dotenv from 'dotenv'
 import path from 'path'
 
 import cluster from 'cluster';
@@ -37,8 +31,6 @@ declare module 'express-session' {
 }
 
 //DOTENV
-//dotenv.config()
-//const port = args.p || process.env.PORT || serverConfig.PORT || 8080
 const port = process.env.PORT || 8080
 
 //SERVER
@@ -63,39 +55,10 @@ if ( process.argv[3] === "cluster" && cluster.isPrimary ) {
 
 //Si entramos en modo distinto de CLUSTER o NO es un proceso primario.
 
-const serverExpress = app.listen(port, () => {
-    Logger.info(`Server listening on port ${port}.`)
-})
-serverExpress.on('error', (err) => Logger.error(`An error has ocurred when starting: ${err}`))
-
-//SOCKET
-/* const io = new IOServer(serverExpress)
-let messages: any[] = []
-
-io.on('connection', async (socket) => {
-    Logger.info(`New User connected: ${socket.id}`)
-    socket.emit('server:products', await productDao.getAll())
-    socket.emit('server:message', messages)
-
-    socket.on('client:product', async (productInfo) => {
-    await productDao.addProduct(productInfo)
-    io.emit('server:products', await productDao.getAll())
-    }) 
-
-    socket.on('client:message', async (messageInfo) => {
-        messageInfo.id = messages.length+1
-        messages.push(messageInfo)
-        chatDao.writeChatToFile(messages)
-        //compression rate
-        const denormalizedMessages = messages
-        const normalizedMessages = normalizeAndDenormalize('normalize', messages)
-        const lengthNormalized = JSON.stringify(normalizedMessages).length;
-        const lengthDenormalized = JSON.stringify(denormalizedMessages).length;
-        let compressionRate = Math.round((lengthNormalized*100) / lengthDenormalized)
-        Logger.info(`Compression Rate: ${(100 - compressionRate).toFixed(2)}%`)
-        io.emit('server:message', messages)
-    })
-}) */
+  const serverExpress = app.listen(port, () => {
+      Logger.info(`Server listening on port ${port}.`)
+  })
+  serverExpress.on('error', (err) => Logger.error(`An error has ocurred when starting: ${err}`))
 }
 
 //MIDDLEWARES

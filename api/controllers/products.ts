@@ -1,8 +1,10 @@
 import { Request, Response } from 'express'
 import { productDao } from '../models/daos'
+import Logger from '../utils/logger'
 
 const getAll = async(req: Request, res: Response) => {
     const products = await productDao.getAll()
+    Logger.info(products)
     return products
 }
 

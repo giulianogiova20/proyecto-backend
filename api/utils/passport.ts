@@ -38,7 +38,7 @@ export function passportLoad(passport: PassportStatic) {
             name: req.body.name,
             address: req.body.address,
             age: req.body.age,
-            phoneNumber: req.body.phoneNumber,
+            phoneNumber: `+54${req.body.phoneNumber}`,
             picture: "avatar.png",
             isAdmin: 'false',
           })

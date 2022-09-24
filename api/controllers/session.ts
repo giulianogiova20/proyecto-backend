@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import sendEmail from '../utils/nodemailer'
+import MailSender from '../utils/nodemailer'
 import { getAll } from './products'
 import Logger from '../utils/logger'
 
@@ -42,8 +42,9 @@ export const renderSignUp = async (req: Request, res: Response) => {
 }
 
 export const signUp = async (req: Request, res: Response, next: NextFunction) => {
-	res.status(201).render('createdUser', { user: req.user })
-	//sendEmail()
+	const user = req.user
+	res.status(201).render('createdUser', { user: user })
+	MailSender.newRegister(user)
 	next()
 }
 
