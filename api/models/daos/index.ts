@@ -20,7 +20,7 @@ switch (process.env.DB_PROVIDER) {
     break
 
   default:
-    productDao = require('./products/daoProductsMongoDb')
+    productDao = require('./products/daoProductsMongoDb') 
     cartDao = require('./cart/daoCartMongoDb')
     chatDao = require('./chat/daoChatFilesystem')
     break

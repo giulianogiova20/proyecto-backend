@@ -14,4 +14,4 @@ scenarios:
   - flow:
       - get:
           # add the url you need to send get request
-          url: "/"
+          url: "/api/products"

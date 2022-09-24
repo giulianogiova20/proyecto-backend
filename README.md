@@ -1,40 +1,22 @@
 # Proyecto BACKEND para CoderHouse
 
-## Entrega 32
+## Tercer Entrega
 
-Para realizar los tests de rendimiento, en el controller api/controllers/info.ts se comenta o no la linea 19
+La estructura es app > route > controller > dao
 
-### Parte 2.1 - Ver resultados en carpeta "1_Profiling"
+La app esta diseñada para funcionar con MongoDB como DB sin hacer uso de postman.
 
-Script Artillery: artillery quick --count 20 -n 50 http://localhost:8080/info > archivo.txt
+Los usuarios registrados tienen hardcodeado +54 como codigo internacional
 
-Archivos,
-    'ResultWithConsoleLog_v8.txt' decodificacion resultado de --> node --prof-process WithCLog_v8.log > ResultWithConsoleLog_v8.txt (Generado por node --prof ./dist/server.js).
+## TESTS
 
-    'ResultWithOutConsoleLog_v8.txt' decodificacion resultado de --> node --prof-process WithOutCLog_v8.log > ResultWithOutConsoleLog_v8.txt (Generado por node --prof ./dist/server.js).
+## Artillery test
 
-### Parte 2.2 - Ver resultados en carpeta "2_Inspect"
+artillery quick --count 20 -n 50 http://localhost:8080/api/products > artillery_cluster.txt / artillery_fork.txt
 
-Script utilizado: node --inspect ./dist/server.js
+<b>Las request dan timeout</b>
 
-*En Chrome --> chrome://inspect/#devices, start/stop.
+## Autocannon test
+npm test --> captura autocannon_fork_test.jpg
 
-### Parte 2.3 - Ver resultados en carpeta "3_Autocannon"
-
-Configuracion package.json:
-
-  "scripts": {
-    "build": "webpack",
-    "start": "0x .",
-    "test": "node benchmark.js"
-
-Script utilizado: npm start
-
-En otra consola: npm test
-
-## Conclusión
-Al utilizar la función console.log (función síncrona) todo el procesamiento del programa resulta mayor, ya que es es un proceso bloqueante del resto de peticiones hasta que esta funcion termine. Lo que repercute en la calidad del mismo, resultando menos óptimo y eficiente.
-
-Se puede observar como el tiempo medio de resolucion de peticiones aumenta cuando tiene el console.log.
-
-Tras el desafio se prueba de que evitar el uso de funciones síncronas (en caso de que sea posible) como por ejemplo el console.log() tiene como resultado un programa de rendimiento más óptimo.
+<b>Las request dan timeout</b>
