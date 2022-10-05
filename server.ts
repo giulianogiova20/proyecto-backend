@@ -5,16 +5,13 @@ import session from 'express-session'
 import config from './api/config/mongoDBatlas'
 import MongoStore from "connect-mongo"
 //Routes
-import { sessionLogin, sessionSignup, sessionLogout, cartRouter, productsRouter, info } from "./api/routes"
-import { getAll } from './api/controllers/products'
+import indexRouter from './api/routes/indexRouter'
 
 //Others
 import flash from "connect-flash"
-import auth from './api/middlewares/auth'
 import cookieParser from 'cookie-parser'
 import passport from 'passport'
 import { passportLoad } from './api/utils/passport'
-import compression from 'compression'
 import Logger from './api/utils/logger'
 import path from 'path'
 
@@ -100,18 +97,6 @@ passportLoad(passport)
 
 //RUTAS
 
-app.use("/login", sessionLogin)
-app.use("/logout", sessionLogout)
-app.use("/signup", sessionSignup)
-app.use('/api', productsRouter, cartRouter)
-
-
-app.get("/", auth, async (req, res: express.Response) => {
-  const products = await getAll(req, res)
-	res.render("home", { logged: true, user: req.user, products: products })
-})
-
-app.use("/info", info)
-app.use("/infoCompressed", compression(), info)
+app.use("/", indexRouter)
 
 

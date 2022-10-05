@@ -17,7 +17,7 @@ class ProductsDAOMongoDB extends MongoDBContainer {
     }
   }
 
-  public async getById(id: any): Promise<any | Error> {
+  public async getProductById(id: any): Promise<any | Error> {
     try {
       const foundItem = await this.model.findOne({ _id: id }, { __v: 0 })
 

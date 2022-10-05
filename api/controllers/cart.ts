@@ -1,24 +1,24 @@
-import { request, Request, Response } from 'express'
+import { Request, Response } from 'express'
 import MessageService from '../utils/messaging'
-import { cartDao, productDao } from '../models/daos'
+import { cartService } from "../services/cartService"
 import Logger from '../utils/logger'
 import MailSender from '../utils/nodemailer'
 
 
 //Esta funcion se ejecutará con el hook post declarado en el esquema del user
-export const createCart = async (user: any) => {
+export const createNewCart = async (user: any) => {
   try {
-    await cartDao.createNewCart(user)
+    await cartService.createNewCart(user)
     Logger.info(`Cart created for user ${user.email}`)
   } catch (error) {
     Logger.error(error)
   }  
 }
 
-export const deleteCartProducts = async (req: Request, res: Response) => {
+export const deleteProductsByCartId = async (req: Request, res: Response) => {
   try {
     const user = req.user
-    await cartDao.deleteCartById(user)
+    await cartService.deleteProductsByCartId(user)
     res.redirect('/api/cart')
   } catch (error) {
     Logger.error(error)
@@ -28,18 +28,18 @@ export const deleteCartProducts = async (req: Request, res: Response) => {
 export const getProductsByCartId = async (req: Request, res: Response) => {
   try {
     const user = req.user
-    const cartProducts = await cartDao.getProductsByCartId(user)
+    const cartProducts = await cartService.getProductsByCartId(user)
     res.render('cart', {products: cartProducts, user: user})
   } catch (error) {
     Logger.error(error)
   }      
 }
 
-export const addToCartById = async (req: Request, res: Response) => {
+export const addProductToCartById = async (req: Request, res: Response) => {
   try {
     const product = req.body
     const user = req.user
-    await cartDao.addProductsById(product, user)
+    await cartService.addProductToCartById(product, user)
     res.redirect('/api/cart')
   } catch (error) {
     Logger.error(error)
@@ -50,7 +50,7 @@ export const deleteProductByCartId = async (req: Request, res: Response) => {
   try {
     const product = req.body
     const user = req.user
-    await cartDao.deleteProductByCartId(user, product)
+    await cartService.deleteProductByCartId(user, product)
     res.redirect('/api/cart')
   } catch (error) {
     Logger.error(error)
@@ -60,8 +60,8 @@ export const deleteProductByCartId = async (req: Request, res: Response) => {
 export const cartOrder = async (req: Request, res: Response) => {
   try {
     const user = req.user
-    const cartProducts = await cartDao.getProductsByCartId(user)
-    await cartDao.deleteCartById(user)
+    const cartProducts = await cartService.getProductsByCartId(user)
+    await cartService.deleteProductsByCartId(user)
     MailSender.newOrder(user,cartProducts)
     MessageService.newSMS(user)
     MessageService.newWhatsapp(user)
@@ -69,4 +69,13 @@ export const cartOrder = async (req: Request, res: Response) => {
   } catch (error) {
     Logger.error(error)
   }
+}
+
+export const cartController = { 
+  createNewCart,
+  deleteProductsByCartId,
+  getProductsByCartId,
+  addProductToCartById,
+  deleteProductByCartId,
+  cartOrder 
 }

@@ -1,12 +1,13 @@
 import { Router } from 'express'
-export const productsRouter = Router()
-import {getAll, getById, addProduct, updateProduct, deleteProduct } from '../controllers/products'
-import {renderAddProdForm} from '../controllers/session'
+import { productsController } from '../controllers/products'
 
-productsRouter.get("/products", getAll) 
-productsRouter.get("/products/:id", getById)
-productsRouter.post("/products", addProduct)
-productsRouter.put("/products/:id", updateProduct)
-productsRouter.delete("/products/:id", deleteProduct)
+const productsRouter = Router()
 
-productsRouter.get("/addProdForm", renderAddProdForm)//Renderiza la vista de Add Produts (sólo Admin).
+productsRouter.get("/products", productsController.getAllProducts) 
+productsRouter.get("/products/:id", productsController.getProductById)
+productsRouter.post("/products", productsController.addProduct)
+productsRouter.put("/products/:id", productsController.updateProduct)
+productsRouter.delete("/products/:id", productsController.deleteProduct)
+
+
+export default productsRouter

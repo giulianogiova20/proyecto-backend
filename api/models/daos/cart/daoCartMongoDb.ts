@@ -1,8 +1,6 @@
-import { NextFunction } from 'express'
 import Logger from '../../../utils/logger'
 import MongoDBContainer from '../../containers/mongoDbContainer'
 import cartModel from '../../schemas/cartSchema'
-import mongoose from 'mongoose'
 
 class CartsDAOMongoDB extends MongoDBContainer {
   constructor() {
@@ -15,7 +13,7 @@ class CartsDAOMongoDB extends MongoDBContainer {
       await cart.save()
   }
 
-  async deleteCartById(user: any) {
+  async deleteProductsByCartId(user: any) {
     const cart: any = await this.model.findOne({ user: user.id })
 
     if (cart === null) {
@@ -51,7 +49,7 @@ class CartsDAOMongoDB extends MongoDBContainer {
       }
   }
 
-  async addProductsById(product: any, user: any) {      
+  async addProductToCartById(product: any, user: any) {      
       const cart: any = await this.model.findOne({ user: user.id })
 
       if (cart === null) {
