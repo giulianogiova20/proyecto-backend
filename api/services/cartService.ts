@@ -1,36 +1,38 @@
-import { cartDao } from "../models/daos";
-import Logger from "../utils/logger";
+//const model = require("../persistence/factory")("cart")
 
-const createNewCart = async (user: any) => {
-    const data = await cartDao.createNewCart(user)
-    return data
+import m from "../persistence/factory"
+const model = m("cart")
+
+class CartService {
+
+    model: any
+
+    constructor(model: any){
+        this.model = model
+     }
+
+    async createNewCart(user: any){
+        return await this.model.createNewCart(user)
+    }
+
+    async deleteProductsByCartId(user: any){
+        return await this.model.deleteProductsByCartId(user)
+
+    }
+
+    async getProductsByCartId(user: any){
+        return await this.model.getProductsByCartId(user)
+
+    }
+
+    async addProductToCartById(user: any, product: any){
+        return await this.model.addProductToCartById(user, product)
+    }
+
+    async deleteProductByCartId(user: any, product: any){
+        return await this.model.deleteProductByCartId(user, product)
+    }
+
 }
 
-const deleteProductsByCartId = async (user: any) => {
-    const data = await cartDao.deleteProductsByCartId(user)
-    return data
-}
-
-const getProductsByCartId = async (user: any) => {
-    const data = await cartDao.getProductsByCartId(user)
-    return data
-}
-
-const addProductToCartById = async (user: any, product: any) => {
-    const data = await cartDao.addProductToCartById(user, product)
-    return data
-}
-
-const deleteProductByCartId = async (user: any, product: any) => {
-    Logger.info(`Service: ${product}`)
-    const data = await cartDao.deleteProductByCartId(user, product)
-    return data
-}
-
-export const cartService = {
-    createNewCart,
-    deleteProductsByCartId,
-    getProductsByCartId,
-    addProductToCartById,
-    deleteProductByCartId
-}
+export default new CartService(model)

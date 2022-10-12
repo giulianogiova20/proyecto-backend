@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import MessageService from '../utils/messaging'
-import { cartService } from "../services/cartService"
+import CartService from "../services/cartService"
 import Logger from '../utils/logger'
 import MailSender from '../utils/nodemailer'
 
@@ -8,7 +8,7 @@ import MailSender from '../utils/nodemailer'
 //Esta funcion se ejecutará con el hook post declarado en el esquema del user
 export const createNewCart = async (user: any) => {
   try {
-    await cartService.createNewCart(user)
+    await CartService.createNewCart(user)
     Logger.info(`Cart created for user ${user.email}`)
   } catch (error) {
     Logger.error(error)
@@ -18,7 +18,7 @@ export const createNewCart = async (user: any) => {
 export const deleteProductsByCartId = async (req: Request, res: Response) => {
   try {
     const user = req.user
-    await cartService.deleteProductsByCartId(user)
+    await CartService.deleteProductsByCartId(user)
     res.redirect('/api/cart')
   } catch (error) {
     Logger.error(error)
@@ -28,7 +28,7 @@ export const deleteProductsByCartId = async (req: Request, res: Response) => {
 export const getProductsByCartId = async (req: Request, res: Response) => {
   try {
     const user = req.user
-    const cartProducts = await cartService.getProductsByCartId(user)
+    const cartProducts = await CartService.getProductsByCartId(user)
     res.render('cart', {products: cartProducts, user: user})
   } catch (error) {
     Logger.error(error)
@@ -39,7 +39,7 @@ export const addProductToCartById = async (req: Request, res: Response) => {
   try {
     const product = req.body
     const user = req.user
-    await cartService.addProductToCartById(product, user)
+    await CartService.addProductToCartById(user, product)
     res.redirect('/api/cart')
   } catch (error) {
     Logger.error(error)
@@ -50,7 +50,7 @@ export const deleteProductByCartId = async (req: Request, res: Response) => {
   try {
     const product = req.body
     const user = req.user
-    await cartService.deleteProductByCartId(user, product)
+    await CartService.deleteProductByCartId(user, product)
     res.redirect('/api/cart')
   } catch (error) {
     Logger.error(error)
@@ -60,8 +60,8 @@ export const deleteProductByCartId = async (req: Request, res: Response) => {
 export const cartOrder = async (req: Request, res: Response) => {
   try {
     const user = req.user
-    const cartProducts = await cartService.getProductsByCartId(user)
-    await cartService.deleteProductsByCartId(user)
+    const cartProducts = await CartService.getProductsByCartId(user)
+    await CartService.deleteProductsByCartId(user)
     MailSender.newOrder(user,cartProducts)
     MessageService.newSMS(user)
     MessageService.newWhatsapp(user)

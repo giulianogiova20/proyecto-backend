@@ -1,20 +1,29 @@
+import mongoose from 'mongoose'
+import cartModel from '../../../models/schemas/cartSchema'
+import mongoConnection from '../../mongoDB/connection'
+import CartDTO from '../../DTOs/cartDTO'
 import Logger from '../../../utils/logger'
-import MongoDBContainer from '../../containers/mongoDbContainer'
-import cartModel from '../../schemas/cartSchema'
+import ProductDTO from '../../DTOs/productDTO'
 
-class CartsDAOMongoDB extends MongoDBContainer {
-  constructor() {
-    super(cartModel)
+class CartMongoDAO {
+
+  model: mongoose.Model<any, {}, {}, {}>
+  DTO: CartDTO
+  static instance: CartMongoDAO
+
+  constructor( cartModel: mongoose.Model<any, {}, {}, {}>, DTO: any ){
+    this.model = cartModel
+    this.DTO = DTO
   }
 
   async createNewCart(user: any) {
-      //const cart = new this.model({user: {id: user.id, username: user.email}, products: []})
-      const cart = new this.model({user: user.id, products: []})
+      const cart = new this.model({user: {id: user.id, username: user.email}, products: []})
+      //const cart = new this.model({user: user.id, products: []})
       await cart.save()
   }
 
   async deleteProductsByCartId(user: any) {
-    const cart: any = await this.model.findOne({ user: user.id })
+    const cart: any = await this.model.findOne({user: user.id}).populate({ path: 'user' })
 
     if (cart === null) {
       return { error: 'Cart not found' }
@@ -38,7 +47,7 @@ class CartsDAOMongoDB extends MongoDBContainer {
 
 
   async getProductsByCartId(user: any) {
-      const cart: any = await this.model.findOne({ user: user.id })
+      const cart: any = await this.model.findOne().populate({ path: 'user' })
 
       if (cart === null) {
         return { error: 'Cart not found' }
@@ -49,8 +58,8 @@ class CartsDAOMongoDB extends MongoDBContainer {
       }
   }
 
-  async addProductToCartById(product: any, user: any) {      
-      const cart: any = await this.model.findOne({ user: user.id })
+  async addProductToCartById(user: any, product: any) {      
+      const cart: any = await this.model.findOne().populate({ path: 'user.id'})
 
       if (cart === null) {
         return { error: 'Cart not found' }
@@ -59,8 +68,7 @@ class CartsDAOMongoDB extends MongoDBContainer {
           { _id: cart._id },
           {
             $push: {
-              products: 
-                product
+              products: product
             }
           }
         )
@@ -73,7 +81,7 @@ class CartsDAOMongoDB extends MongoDBContainer {
   }
 
   async deleteProductByCartId(user: any, product: any) {
-      const cart: any = await this.model.findOne({ user: user.id })
+      const cart: any = await this.model.findOne().populate({ path: 'user.id' })
 
       if (cart === null) {
         return { error: 'Cart not found' }
@@ -96,4 +104,4 @@ class CartsDAOMongoDB extends MongoDBContainer {
 
 }
 
-export default new CartsDAOMongoDB()
+export default new CartMongoDAO(cartModel, CartDTO)

@@ -2,21 +2,19 @@
 import express from 'express'
 import session from 'express-session'
 //Server Config
-import config from './api/config/mongoDBatlas'
+import persistenceConfig from './api/config'
 import MongoStore from "connect-mongo"
+import cluster from 'cluster'
+import os from 'os'
 //Routes
 import indexRouter from './api/routes/indexRouter'
-
 //Others
 import flash from "connect-flash"
 import cookieParser from 'cookie-parser'
 import passport from 'passport'
 import { passportLoad } from './api/utils/passport'
-import Logger from './api/utils/logger'
 import path from 'path'
-
-import cluster from 'cluster';
-import os from 'os';
+import Logger from './api/utils/logger'
 
 declare module 'express-session' {
 	export interface SessionData {
@@ -59,14 +57,13 @@ if ( process.argv[3] === "cluster" && cluster.isPrimary ) {
 }
 
 //MIDDLEWARES
-app.use(express.static(path.join(__dirname, '../public')))
+/* app.use(express.static(path.join(__dirname, '../public'))) */
 app.use(express.static(path.join(__dirname, '../uploads')))
-app.use(express.json())
+app.use(express.json())//Acceso al rec.body
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }))
 
-
-// CONFIGURACION MOTOR DE PLANTILLAS EJS    
+//CONFIGURACION MOTOR DE PLANTILLAS EJS
 app.set('views', path.join(__dirname, '../api/views'))
 app.set('view engine', 'ejs')
 
@@ -75,8 +72,8 @@ app.use(
     session({
       store: MongoStore.create({
         mongoUrl:
-          config.mongoDB.URI,
-        mongoOptions,
+        persistenceConfig.MONGO_ATLAS_URL,
+        mongoOptions
       }),
       secret: process.env.SECRET_KEY as string,
       resave: false,
@@ -87,7 +84,6 @@ app.use(
       },
     })
   )
-  
 
 //PASSPORT
 app.use(passport.initialize())
@@ -96,7 +92,6 @@ app.use(flash())
 passportLoad(passport)
 
 //RUTAS
-
-app.use("/", indexRouter)
+app.use('/', indexRouter)
 
 

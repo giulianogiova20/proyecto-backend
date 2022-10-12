@@ -1,21 +1,21 @@
 import { Request, Response } from 'express'
-import { productService } from '../services/productService'
+import ProductService from '../services/productService'
 import Logger from '../utils/logger'
 
 const getAllProducts = async(req: Request, res: Response) => {
     try {
-        const products = await productService.getAllProducts()
+        const products = await ProductService.getAllProducts()
+        Logger.info("controller")
+        Logger.info(products)
         return products
     } catch (err) {
         Logger.error(`Error in getAll method: ${err}`)
     }
-    
-    
 }
 
 const getProductById = async(req: Request, res: Response)  => {
     const { id } = req.params
-    const body = await productService.getProductById(Number(id))
+    const body = await ProductService.getProductById(Number(id))
   
     res.json(body)
 }
@@ -24,7 +24,7 @@ const getProductById = async(req: Request, res: Response)  => {
 const addProduct = async(req: Request, res: Response) => {
     try {
         const product = req.body
-        await productService.addProduct(product)
+        await ProductService.addProduct(product)
         Logger.info('Product added')
         res.redirect('/api/addProdForm')
     } catch (error) {
@@ -36,7 +36,7 @@ const updateProduct = async(req: Request, res: Response) => {
     const { id } = req.params
     const product = req.body
   
-    await productService.updateProduct(Number(id), product)
+    await ProductService.updateProduct(Number(id), product)
   
     res.json({
       msg: `producto ${id} actualizado`,
@@ -45,7 +45,7 @@ const updateProduct = async(req: Request, res: Response) => {
 
 const deleteProduct = async(req: Request, res: Response) => {
     const { id } = req.params
-    const deletedProduct = await productService.deleteProduct(Number(id))
+    const deletedProduct = await ProductService.deleteProduct(Number(id))
   
     res.json({
         deletedProduct
