@@ -1,15 +1,15 @@
 import { Router } from 'express'
 import passport from 'passport'
-import { sessionController } from "../../controllers/session"
-import user from '../../models/schemas/user'
+import { SessionController } from "../../controllers"
+import user from '../../models/schemas/userSchema'
 import { upload } from '../../utils/multer'
 
 export const sessionSignup = Router() 
 
 
-sessionSignup.get('/', sessionController.renderSignUp)
-sessionSignup.post('/', passport.authenticate('signup', { failureRedirect: '/signup/failed', failureFlash: true}), sessionController.signUp)
-sessionSignup.get('/upload', sessionController.renderUpload)
+sessionSignup.get('/', SessionController.renderSignUp)
+sessionSignup.post('/', passport.authenticate('signup', { failureRedirect: '/signup/failed', failureFlash: true}), SessionController.signUp)
+sessionSignup.get('/upload', SessionController.renderUpload)
 sessionSignup.post('/upload', upload.single('picture'), async (req: any, res: any, next: any) => {
     const file = req.file
     if(!file) {
@@ -40,8 +40,8 @@ sessionSignup.post('/upload', upload.single('picture'), async (req: any, res: an
     }
 
     next()
-  }, sessionController.uploadSuccess)
-sessionSignup.get('/failed', sessionController.renderFailedSignup)
+  }, SessionController.uploadSuccess)
+sessionSignup.get('/failed', SessionController.renderFailedSignup)
 
 
 

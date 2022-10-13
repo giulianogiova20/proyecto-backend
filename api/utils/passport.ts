@@ -1,6 +1,6 @@
 import { PassportStatic } from 'passport'
 import { Strategy } from 'passport-local'
-import User from '../models/schemas/user'
+import User from '../models/schemas/userSchema'
 import Logger from '../utils/logger'
 
 

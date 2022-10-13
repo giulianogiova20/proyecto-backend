@@ -1,16 +1,19 @@
-import mongoose from 'mongoose'
 import productModel from '../../../models/schemas/productSchema'
 import mongoConnection from '../../mongoDB/connection'
-import ProductDTO from '../../DTOs/productDTO'
+import IProductDAO from './IProductDAO'
+import ProductDTO from '../../DTOs/ProductDTO'
 import Logger from '../../../utils/logger'
+import mongoose from 'mongoose'
 
-class ProductMongoDAO  {
+class ProductMongoDAO extends IProductDAO {
   
   model: mongoose.Model<any, {}, {}, {}>
   DTO: any
   static instance: ProductMongoDAO
+  
 
   constructor(model: mongoose.Model<any, {}, {}, {}>, DTO: ProductDTO) {
+    super()
     this.model = model
     this.DTO = DTO
     mongoConnection()
@@ -23,38 +26,28 @@ class ProductMongoDAO  {
     return this.instance
   }
 
-  public async getAllProducts(): Promise<any[] | any> {
-    try{
+  public async getAll(): Promise<any[] | any> {
       const foundItems = await this.model.find()
       const data: any = foundItems.map( entity => 
-        new this.DTO(entity).toJson())
-        return data
-    } catch (err) {
-      Logger.error(`MongoAtlas getAll method error: ${err}`)
-    }
+      new this.DTO(entity).toJson())
+      return data
   }
 
-  public async getProductById(id: any): Promise<any | Error> {
-    try {
-      const foundItem = await this.model.findOne({ _id: id }, { __v: 0 })
+  public async getProductById(id: String): Promise<any | Error> {
 
-      if (foundItem === null) {
-          return { error: 'Product not found' }
-      } else {
-        const data: any = new this.DTO(foundItem).toJson()
-        return data
-      }
-  } catch (err) {
-    Logger.error(`MongoAtlas getProductById method error: ${err}`)
+    if (!mongoose.isValidObjectId(id)) return undefined
+      const foundItem = await this.model.findById(id)
+
+    if (!foundItem) return null
+      return new this.DTO(foundItem).toJson()
   }
-}
 
   async addProduct(product: any): Promise<any | void> {
       const productToSave = new this.model(product)
       await productToSave.save()
   }
 
-  public async updateProduct(id: any, newData: any): Promise<any> {
+  public async updateProductById(id: any, newData: any): Promise<any> {
     try {
       const updatedData = await this.model.updateOne({ _id: id }, newData)
 
@@ -65,11 +58,11 @@ class ProductMongoDAO  {
       }
      
   } catch (err) {
-    Logger.error(`MongoAtlas updateProduct method error: ${err}`) 
+    Logger.error(`MongoAtlas updateProductById method error: ${err}`) 
   }
   }
 
-  public async deleteProduct(id: any): Promise<any> {
+  public async deleteProductById(id: any): Promise<any> {
     try {
       const deletedData = await this.model.deleteOne({ _id: id})
       if (deletedData.deletedCount === 0) {
@@ -78,7 +71,7 @@ class ProductMongoDAO  {
         return { msg: 'Product deleted.' }
     }
   } catch (err) {
-    Logger.error(`MongoAtlas deleteProduct method error: ${err}`) 
+    Logger.error(`MongoAtlas deleteProductById method error: ${err}`) 
   }
   }
 

@@ -1,9 +1,9 @@
 import mongoose from 'mongoose'
 import cartModel from '../../../models/schemas/cartSchema'
 import mongoConnection from '../../mongoDB/connection'
-import CartDTO from '../../DTOs/cartDTO'
+import CartDTO from '../../DTOs/CartDTO'
 import Logger from '../../../utils/logger'
-import ProductDTO from '../../DTOs/productDTO'
+
 
 class CartMongoDAO {
 
@@ -17,13 +17,13 @@ class CartMongoDAO {
   }
 
   async createNewCart(user: any) {
-      const cart = new this.model({user: {id: user.id, username: user.email}, products: []})
-      //const cart = new this.model({user: user.id, products: []})
+      //const cart = new this.model({user: {id: user.id, username: user.email}, products: []})
+      const cart = new this.model({user: user.id, products: []})
       await cart.save()
   }
 
   async deleteProductsByCartId(user: any) {
-    const cart: any = await this.model.findOne({user: user.id}).populate({ path: 'user' })
+    const cart: any = await this.model.findOne({user: user.id})
 
     if (cart === null) {
       return { error: 'Cart not found' }
@@ -47,20 +47,18 @@ class CartMongoDAO {
 
 
   async getProductsByCartId(user: any) {
-      const cart: any = await this.model.findOne().populate({ path: 'user' })
+      const cart: any = await this.model.findOne({user: user.id})
 
       if (cart === null) {
         return { error: 'Cart not found' }
       } else {
         const foundItemsInCart = cart.products
-        Logger.info(`Cart: ${foundItemsInCart}`)
         return foundItemsInCart
       }
   }
 
   async addProductToCartById(user: any, product: any) {      
-      const cart: any = await this.model.findOne().populate({ path: 'user.id'})
-
+      const cart: any = await this.model.findOne({user: user.id})
       if (cart === null) {
         return { error: 'Cart not found' }
       } else {
@@ -81,7 +79,7 @@ class CartMongoDAO {
   }
 
   async deleteProductByCartId(user: any, product: any) {
-      const cart: any = await this.model.findOne().populate({ path: 'user.id' })
+      const cart: any = await this.model.findOne({user: user.id})
 
       if (cart === null) {
         return { error: 'Cart not found' }

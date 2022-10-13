@@ -7,7 +7,7 @@ import MongoStore from "connect-mongo"
 import cluster from 'cluster'
 import os from 'os'
 //Routes
-import indexRouter from './api/routes/indexRouter'
+import indexRouter from './api/routes'
 //Others
 import flash from "connect-flash"
 import cookieParser from 'cookie-parser'

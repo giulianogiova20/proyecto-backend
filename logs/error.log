@@ -190,3 +190,63 @@
   level: 'error',
   timestamp: '2022-10-10T22:03:26.755Z'
 }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-10-13T01:07:00.127Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-10-13T01:09:50.246Z'
+}
+{
+  message: 'Error in getById method: CastError: Cast to ObjectId failed for value "NaN" (type number) at path "_id" for model "products"',
+  level: 'error',
+  timestamp: '2022-10-13T01:10:52.751Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-10-13T01:14:40.013Z'
+}
+{
+  message: 'Error in getById method: CastError: Cast to ObjectId failed for value "NaN" (type number) at path "_id" for model "products"',
+  level: 'error',
+  timestamp: '2022-10-13T01:14:45.024Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-10-13T01:17:23.804Z'
+}
+{
+  message: 'Error in getById method: CastError: Cast to ObjectId failed for value "NaN" (type number) at path "_id" for model "products"',
+  level: 'error',
+  timestamp: '2022-10-13T01:17:32.046Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-10-13T01:20:00.592Z'
+}
+{
+  message: 'Error in getById method: CastError: Cast to ObjectId failed for value "NaN" (type number) at path "_id" for model "products"',
+  level: 'error',
+  timestamp: '2022-10-13T01:20:06.785Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-10-13T01:24:45.755Z'
+}
+{
+  message: 'Error in getById method: CastError: Cast to ObjectId failed for value "NaN" (type number) at path "_id" for model "products"',
+  level: 'error',
+  timestamp: '2022-10-13T01:24:52.244Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-10-13T01:28:31.604Z'
+}

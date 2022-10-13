@@ -10,7 +10,7 @@ const gmailtransporter = nodemailer.createTransport({
         user: process.env.GMAIL_MAIL,
         pass: process.env.GMAIL_PROVISIONAL_PASS
     }
-});
+})
 
 class MailSender{
     transporter: nodemailer.Transporter    
