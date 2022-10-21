@@ -280,3 +280,38 @@
   level: 'error',
   timestamp: '2022-10-17T15:01:11.047Z'
 }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-10-21T02:06:21.310Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-10-21T02:14:00.212Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-10-21T02:34:28.603Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-10-21T02:43:19.165Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-10-21T02:45:08.942Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-10-21T03:02:10.443Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-10-21T03:09:48.368Z'
+}

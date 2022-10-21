@@ -19,19 +19,23 @@ class ProductService {
     }
 
     async getProductById(id: String){
-        return await this.model.getProductById(id)
+        const data = await this.model.getProductById(id)
+        return data
     }
 
     async addProduct(product: String){
-        return await this.model.addProduct(product)
+        const data = await this.model.addProduct(product)
+        return data
     }
 
     async updateProductById(id: String, product: any){
-        return await this.model.updateProductById(id, product)
+        const data = await this.model.updateProductById(id, product)
+        return data
     }
 
     async deleteProductById(id: String){
-        return await this.model.deleteProductById(id)
+        const data = await this.model.deleteProductById(id)
+        return data
     }
 
 
