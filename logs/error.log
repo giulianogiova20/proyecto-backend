@@ -315,3 +315,375 @@
   level: 'error',
   timestamp: '2022-10-21T03:09:48.368Z'
 }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T15:24:47.079Z'
+}
+{ level: 'error', timestamp: '2022-11-03T15:25:59.615Z' }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T15:34:29.511Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T15:36:05.725Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T16:46:46.327Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T16:55:44.806Z'
+}
+{ level: 'error', timestamp: '2022-11-03T16:55:55.462Z' }
+{ level: 'error', timestamp: '2022-11-03T16:58:49.273Z' }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T17:04:12.831Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T17:05:30.750Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T17:08:18.914Z'
+}
+{ level: 'error', timestamp: '2022-11-03T17:10:00.026Z' }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T17:11:26.115Z'
+}
+{ level: 'error', timestamp: '2022-11-03T17:11:43.242Z' }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T17:12:42.763Z'
+}
+{ level: 'error', timestamp: '2022-11-03T17:13:07.445Z' }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T17:15:21.206Z'
+}
+{ level: 'error', timestamp: '2022-11-03T17:15:26.553Z' }
+{ level: 'error', timestamp: '2022-11-03T17:17:10.569Z' }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T17:22:17.505Z'
+}
+{ level: 'error', timestamp: '2022-11-03T17:22:40.929Z' }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T17:38:16.568Z'
+}
+{ level: 'error', timestamp: '2022-11-03T17:39:12.426Z' }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T17:44:30.974Z'
+}
+{ level: 'error', timestamp: '2022-11-03T17:45:13.617Z' }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T17:48:21.521Z'
+}
+{ level: 'error', timestamp: '2022-11-03T17:49:17.040Z' }
+{ level: 'error', timestamp: '2022-11-03T17:49:49.079Z' }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T19:28:23.903Z'
+}
+{ level: 'error', timestamp: '2022-11-03T19:31:03.743Z' }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T19:33:56.587Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T19:35:40.625Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T19:38:15.192Z'
+}
+{ level: 'error', timestamp: '2022-11-03T19:38:23.665Z' }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T19:54:36.743Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T19:57:39.219Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T19:58:43.041Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T20:07:15.821Z'
+}
+{ level: 'error', timestamp: '2022-11-03T20:10:13.471Z' }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T20:14:43.622Z'
+}
+{ level: 'error', timestamp: '2022-11-03T20:15:17.564Z' }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T20:24:28.029Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T20:26:28.176Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T20:33:55.561Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T20:39:31.702Z'
+}
+{
+  errors: {
+    timestamp: CastError: Cast to Number failed for value "3/11/2022 17:39:31" (type string) at path "timestamp"
+        at SchemaNumber.cast (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\schema\number.js:378:11)
+        at SchemaNumber.SchemaType.applySetters (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\schematype.js:1201:12)
+        at SchemaNumber.SchemaType.getDefault (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\schematype.js:1141:25)
+        at applyDefaults (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\helpers\document\applyDefaults.js:99:24)
+        at model.Document (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\document.js:158:7)
+        at model.Model (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\model.js:121:12)
+        at new model (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\model.js:5020:15)
+        at D.<anonymous> (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\dist\server.js:1:6986)
+        at Generator.next (<anonymous>)
+        at C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\dist\server.js:1:6772 {
+      stringValue: '"3/11/2022 17:39:31"',
+      messageFormat: undefined,
+      kind: 'Number',
+      value: '3/11/2022 17:39:31',
+      path: 'timestamp',
+      reason: AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+      
+        assert.ok(!isNaN(val))
+      
+          at castNumber (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\cast\number.js:27:10)
+          at SchemaNumber.cast (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\schema\number.js:376:12)
+          at SchemaNumber.SchemaType.applySetters (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\schematype.js:1201:12)
+          at SchemaNumber.SchemaType.getDefault (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\schematype.js:1141:25)
+          at applyDefaults (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\helpers\document\applyDefaults.js:99:24)
+          at model.Document (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\document.js:158:7)
+          at model.Model (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\model.js:121:12)
+          at new model (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\model.js:5020:15)
+          at D.<anonymous> (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\dist\server.js:1:6986)
+          at Generator.next (<anonymous>) {
+        generatedMessage: true,
+        code: 'ERR_ASSERTION',
+        actual: false,
+        expected: true,
+        operator: '=='
+      },
+      valueType: 'string'
+    }
+  },
+  _message: 'carts validation failed',
+  level: 'error',
+  timestamp: '2022-11-03T20:42:00.840Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T20:43:00.543Z'
+}
+{ level: 'error', timestamp: '2022-11-03T20:43:41.012Z' }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T20:55:25.067Z'
+}
+{ level: 'error', timestamp: '2022-11-03T20:56:22.654Z' }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T21:19:30.385Z'
+}
+{ level: 'error', timestamp: '2022-11-03T21:20:40.519Z' }
+{ level: 'error', timestamp: '2022-11-03T21:22:12.549Z' }
+{ level: 'error', timestamp: '2022-11-03T21:22:38.197Z' }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T21:39:39.050Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T21:51:47.411Z'
+}
+{
+  errors: {
+    user_email: ValidatorError: Path `user_email` is required.
+        at validate (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\schematype.js:1346:13)
+        at SchemaString.SchemaType.doValidate (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\schematype.js:1330:7)
+        at C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\document.js:2835:18
+        at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+      properties: {
+        validator: [Function (anonymous)],
+        message: 'Path `user_email` is required.',
+        type: 'required',
+        path: 'user_email',
+        value: undefined
+      },
+      kind: 'required',
+      path: 'user_email',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+  },
+  _message: 'carts validation failed',
+  level: 'error',
+  timestamp: '2022-11-03T21:52:05.279Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T21:55:22.893Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T22:00:57.089Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T22:16:18.201Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T22:17:12.796Z'
+}
+{ level: 'error', timestamp: '2022-11-03T22:17:31.514Z' }
+{
+  messageFormat: undefined,
+  stringValue: `"{ prod_id: '632e833d00ddfbd0970cb16a', quantity: { quantity: '4' } }"`,
+  kind: 'embedded',
+  value: { prod_id: '632e833d00ddfbd0970cb16a', quantity: { quantity: '4' } },
+  path: 'products',
+  reason: CastError: Cast to Number failed for value "{ quantity: '4' }" (type Object) at path "quantity"
+      at SchemaNumber.cast (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\schema\number.js:378:11)
+      at SchemaNumber.SchemaType.applySetters (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\schematype.js:1201:12)
+      at EmbeddedDocument.$set (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\document.js:1368:22)
+      at EmbeddedDocument.$set (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\document.js:1093:16)
+      at EmbeddedDocument.Document (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\document.js:166:12)
+      at EmbeddedDocument.Subdocument (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\types\subdocument.js:31:12)
+      at EmbeddedDocument.ArraySubdocument [as constructor] (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\types\ArraySubdocument.js:36:15)
+      at new EmbeddedDocument (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\schema\documentarray.js:134:17)
+      at DocumentArrayPath.cast (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\schema\documentarray.js:507:22)
+      at DocumentArrayPath.SchemaType.applySetters (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\schematype.js:1201:12) {
+    stringValue: `"{ quantity: '4' }"`,
+    messageFormat: undefined,
+    kind: 'Number',
+    value: { quantity: '4' },
+    path: 'quantity',
+    reason: AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+    
+      assert.ok(!isNaN(val))
+    
+        at castNumber (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\cast\number.js:27:10)
+        at SchemaNumber.cast (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\schema\number.js:376:12)
+        at SchemaNumber.SchemaType.applySetters (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\schematype.js:1201:12)
+        at EmbeddedDocument.$set (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\document.js:1368:22)
+        at EmbeddedDocument.$set (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\document.js:1093:16)
+        at EmbeddedDocument.Document (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\document.js:166:12)
+        at EmbeddedDocument.Subdocument (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\types\subdocument.js:31:12)
+        at EmbeddedDocument.ArraySubdocument [as constructor] (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\types\ArraySubdocument.js:36:15)
+        at new EmbeddedDocument (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\schema\documentarray.js:134:17)
+        at DocumentArrayPath.cast (C:\Users\giuli\Documents\PROGRAMACION\BackEnd\Proyecto_Final\node_modules\mongoose\lib\schema\documentarray.js:507:22) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: '=='
+    },
+    valueType: 'Object'
+  },
+  valueType: 'Object',
+  level: 'error',
+  timestamp: '2022-11-03T22:17:49.050Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T22:20:33.448Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T22:26:21.393Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T22:38:31.693Z'
+}
+{ level: 'error', timestamp: '2022-11-03T22:39:04.712Z' }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T22:41:27.873Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T22:53:21.011Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T22:54:06.618Z'
+}
+{
+  message: 'Product not deleted from cart',
+  level: 'error',
+  timestamp: '2022-11-03T22:55:12.226Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T22:57:30.610Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-03T22:57:53.270Z'
+}

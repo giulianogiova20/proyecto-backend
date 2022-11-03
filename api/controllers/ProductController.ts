@@ -33,12 +33,6 @@ class ProductController {
     async addProduct(req: Request, res: Response){
         try {
             const product = req.body
-            
-            const { name, price, description, photoURL, stock } = product
-            if (!(photoURL instanceof String)) return res.status(404).json({ error: 'photoURL must be type String.' })
-            if (!(price instanceof Number)) return res.status(404).json({ error: 'price must be type Number.' })
-            if (!(stock instanceof Number)) return res.status(404).json({ error: 'stock must be type Number.' })
-
             await ProductService.addProduct(product)
             return res.status(200).json({ ProductAdded: product })
         } catch (error) {

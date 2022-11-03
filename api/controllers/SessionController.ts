@@ -6,20 +6,12 @@ class SessionController {
 	constructor(){}
 
 //LOGIN  
-async login(req: Request, res: Response, next: NextFunction){
+async login(req: Request, res: Response){
     try {
 		if(req.isAuthenticated())
-		next()
+		res.status(200).json({ message: 'user logged'})
 	} catch (error) {
 		Logger.error(`Error when login method in SessionControllers, ${error}`)
-	}
-}
-
-async renderLogin(req: Request, res: Response){
-	if (req.isAuthenticated()) {
-		res.redirect('/')
-	} else {
-		res.render('login')
 	}
 }
 
@@ -46,17 +38,20 @@ async renderSignUp(req: Request, res: Response){
 	}
 }
 
-async signUp(req: Request, res: Response, next: NextFunction){
-	const user = req.user
-	res.status(201).render('createdUser', { user: user })
-	MailSender.newRegister(user)
-	next()
+async signUp(req: Request, res: Response){
+	try {
+		const user = req.user
+		//MailSender.newRegister(user)
+		res.status(200).json({ message: 'user registered'})
+	} catch (error) {
+		Logger.error(error)
+	}
 }
 
 
 //FAILED SIGNUP
-async renderFailedSignup(req: Request, res: Response){
-	res.status(409).render('failedSignup', { message: req.flash("error")[0] })	
+async failedSignup(req: Request, res: Response){
+	res.status(409).json({ error: req.flash("error")[0]})	
 }
 
 
