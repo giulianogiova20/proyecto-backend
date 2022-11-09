@@ -687,3 +687,78 @@
   level: 'error',
   timestamp: '2022-11-03T22:57:53.270Z'
 }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-06T20:16:22.777Z'
+}
+{
+  message: "Error in addProductToCartById method: TypeError: Cannot read properties of undefined (reading '_id')",
+  level: 'error',
+  timestamp: '2022-11-06T20:16:55.270Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-06T20:18:04.275Z'
+}
+{
+  message: "Error in addProductToCartById method: TypeError: Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '2022-11-06T20:18:07.949Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-06T20:19:33.686Z'
+}
+{
+  message: "Error in addProductToCartById method: TypeError: Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '2022-11-06T20:19:37.728Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-06T20:30:58.675Z'
+}
+{
+  message: "Error in addProductToCartById method: TypeError: Cannot read properties of undefined (reading '_id')",
+  level: 'error',
+  timestamp: '2022-11-06T20:31:02.126Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-06T20:34:40.598Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-06T20:34:56.305Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-06T20:39:03.509Z'
+}
+{
+  message: 'Product not deleted from cart',
+  level: 'error',
+  timestamp: '2022-11-06T20:39:12.476Z'
+}
+{
+  message: 'Product not deleted from cart',
+  level: 'error',
+  timestamp: '2022-11-06T20:40:13.144Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-06T20:43:44.602Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-06T20:44:54.526Z'
+}

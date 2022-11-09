@@ -66,25 +66,71 @@ class CartMongoDAO {
   }
 
   async addProductToCartById(user: any, prod_id: any, quantity: any) {      
-      const cart: any = await this.model.findOne({user_id: user.id})
-      if (cart === null) {
-        return { error: 'Cart not found' }
-      } else {
+    const cart: any = await this.model.findOne({ user_id: user.id })
+
+    if (cart === null) {
+      Logger.error(`Cart not found in addToCartById method.`)
+    } else {
+      //checks if products already exists in cart
+      let productExistence = await this.model.aggregate([
+        { $match: { 'products.prod_id': prod_id } },
+        {
+          $project: {
+            count: {
+              $size: {//to get total elements in bottom filtered result
+                $filter: {//to iterate loop of products array and match prod_id
+                  input: '$products',
+                  cond: {
+                    $eq: ['$$this.prod_id', prod_id]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          $group: {//get total count
+            _id: null,
+            count: { $sum: '$count' }
+          }
+        }
+      ])
+      if (productExistence && productExistence[0]) {
+
+        const newCartProductQty = await this.model.updateOne(
+          { _id: cart._id, 'products.prod_id': prod_id },
+          {
+            $inc: { 'products.$.quantity': quantity }
+          }
+        )
+
+        if (newCartProductQty.modifiedCount === 0) {
+          Logger.error('Product quantity could not been modified.')
+        } else {
+          Logger.info('Product quantity succesfully updated!')
+          const updatedCart: any = await this.model.findOne({user_id: user.id})
+          return new this.DTO(updatedCart).toJson()
+        }
+
+
+      } else {//product does not exists.
         const newCartProduct = await this.model.updateOne(
           { _id: cart._id },
           {
             $push: {
-              products: {prod_id,quantity}
+              products: {prod_id, quantity}
             }
           }
         )
         if (newCartProduct.modifiedCount === 0) {
-          Logger.error('Product not added to cart')
+          Logger.error('Product not added to cart.')
         } else {
+          Logger.info('Product succesfully added to cart!')
           const updatedCart: any = await this.model.findOne({user_id: user.id})
           return new this.DTO(updatedCart).toJson()
         }
       }
+    }
   }
 
   async deleteProductByCartId(user: any, prod_id: any) {
@@ -98,13 +144,14 @@ class CartMongoDAO {
           {
             $pull: {
               products: 
-                {id: prod_id}
+                {prod_id: prod_id}
             }
           })
           if (deleteCartProduct.modifiedCount === 0) {
             Logger.error('Product not deleted from cart')
           } else {
-            Logger.info('Product deleted from cart')
+            const updatedCart: any = await this.model.findOne({user_id: user.id})
+            return new this.DTO(updatedCart).toJson()
           }
     }
   }

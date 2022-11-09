@@ -6,8 +6,7 @@ import { upload } from '../../utils/multer'
 
 export const sessionSignup = Router() 
 
-sessionSignup.post('/', passport.authenticate('signup', { failureRedirect: '/signup/failed', failureFlash: true}), SessionController.signUp)
-sessionSignup.get('/upload', SessionController.renderUpload)
+sessionSignup.post('/', SessionController.signUp)
 sessionSignup.post('/upload', upload.single('picture'), async (req: any, res: any, next: any) => {
     const file = req.file
     if(!file) {
