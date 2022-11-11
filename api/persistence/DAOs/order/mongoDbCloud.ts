@@ -1,67 +1,71 @@
-import cartSchema from '../../../models/schemas/cartSchema'
 import orderSchema from '../../../models/schemas/orderSchema'
 import mongoose from 'mongoose'
 import mongoConnection from '../../mongoDB/connection'
 import Logger from '../../../utils/logger'
 import OrderDTO from '../../DTOs/OrderDTO'
+import IOrderDAO from './IOrderDAO'
+import { CartService, ProductService } from '../../../services'
+import MailSender from '../../../utils/nodemailer'
+import MessageService from '../../../utils/messaging'
 
+class OrderMongoDAO extends IOrderDAO {
 
-class OrderMongoDAO {
-
-    cartModel: mongoose.Model<any, {}, {}, {}>
     orderModel: mongoose.Model<any, {}, {}, {}>
     DTO: any
+    static instance: OrderMongoDAO
 
-    constructor(cart: mongoose.Model<any, {}, {}, {}>, order: mongoose.Model<any, {}, {}, {}>, DTO: any) {
-        this.cartModel = cart
+    constructor(order: mongoose.Model<any, {}, {}, {}>, DTO: any) {
+        super()
         this.orderModel = order
         this.DTO = DTO
         mongoConnection()
     }
 
-    public async createOrder(user: any): Promise<any[] | any> {
+    static getInstance(orderModel: mongoose.Model<any, {}, {}, {}>, DTO: any){
+        if(!this.instance) {
+            this.instance = new OrderMongoDAO(orderModel, DTO)
+        }
+        return this.instance
+      }
 
-        if(!mongoose.isValidObjectId(user.id)) return undefined
-
+    public async createOrder(user: any): Promise<any> {
         try {
-            const cartProducts = await this.cartModel
-                .find({user: user.id})
-                .populate({path: 'products', select: '_id title description code thumbnail price'}).exec()
-            
-            Logger.info(`cartProducts, ${cartProducts}`)
 
-            if( cartProducts.length == 0 ) throw new Error('There is not products in the cart.')
+            const cartProducts = await CartService.getProductsByCartId(user)
 
-            const products = cartProducts.map( cartProd => { 
-                return {
-                    ...cartProd.product, 
-                    quantity: cartProd.quantity
-                } 
+            if( cartProducts.length == 0 ) return { error: 'There is not products in Cart' }
+           
+            const orderProducts = cartProducts.map(async (cartProduct: any) =>{
+                const product = await ProductService.getProductById(cartProduct.prod_id) 
+                return product
+
             })
-
-            Logger.info(`products, ${products}`)
-
+            console.log(orderProducts)
             const newOrder  = await this.orderModel.create(
                 { 
-                    user: user.id, 
-                    products: products,
-                    number: await this.orderModel.countDocuments({}) 
+                    user: user.email, 
+                    products: orderProducts,
+                    status: "generated" 
                 }
             )
 
-            Logger.info(`newOrder, ${newOrder}`)
+            //eMail to Admin
+/*             await MailSender.newOrder(user, orderProducts)
+            //SMS to user
+            await MessageService.newSMS(user)
+            //Whatsapp message to Admin
+            await MessageService.newWhatsapp(user) */
 
-            //await this.cartModel.deleteMany({ user: user.id })
+            //Empty cart products
+            await CartService.deleteProductsByCartId(user)
 
-            const data: any = new this.DTO(newOrder).toJson()
-
-            Logger.info(`data, ${data}`)
+            const data = new this.DTO(newOrder).toJson()
             return data
         } catch (err) {
-            Logger.error(`MongoAtlas getAll method error: ${err}`)
+            Logger.error(`MongoAtlas createOrder method error: ${err}`)
         }
     }
 
 }
 
-export default new OrderMongoDAO(cartSchema, orderSchema, OrderDTO)
+export default OrderMongoDAO.getInstance(orderSchema, OrderDTO)

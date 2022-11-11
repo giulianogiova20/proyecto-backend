@@ -16,7 +16,6 @@ const renderInfo = (req: Request, res: Response) => {
     procesors: cpuQty,
   }
 
-  //console.log(infoDisplayed)
   return res.render('info', infoDisplayed)
 
 }

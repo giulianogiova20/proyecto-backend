@@ -1,6 +1,7 @@
 import { PassportStatic } from 'passport'
 import { Strategy } from 'passport-local'
 import User from '../models/schemas/userSchema'
+import UserService from '../services/UserService'
 import Logger from '../utils/logger'
 
 
@@ -43,8 +44,8 @@ export function passportLoad(passport: PassportStatic) {
             isAdmin: 'false',
           })
           try {
-              await newUser.save()
-              return done(null, newUser) //1)
+              const data = await UserService.saveUser(newUser)
+              return done(null, data) //1)
           } catch (err:any) {
                if(err.code === 11000) {
                   return done(null, false, { message: "User already exists" }) //2)

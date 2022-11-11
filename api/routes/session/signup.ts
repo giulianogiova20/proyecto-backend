@@ -6,10 +6,10 @@ import { upload } from '../../utils/multer'
 
 export const sessionSignup = Router() 
 
+sessionSignup.post('/', passport.authenticate('signup', { failureRedirect: '/signup/failed', failureFlash: true}),async (req,res) => {
+  res.status(200).json({ message: 'User registered'})})
 
-sessionSignup.get('/', SessionController.renderSignUp)
-sessionSignup.post('/', passport.authenticate('signup', { failureRedirect: '/signup/failed', failureFlash: true}), SessionController.signUp)
-sessionSignup.get('/upload', SessionController.renderUpload)
+
 sessionSignup.post('/upload', upload.single('picture'), async (req: any, res: any, next: any) => {
     const file = req.file
     if(!file) {
@@ -41,7 +41,7 @@ sessionSignup.post('/upload', upload.single('picture'), async (req: any, res: an
 
     next()
   }, SessionController.uploadSuccess)
-sessionSignup.get('/failed', SessionController.renderFailedSignup)
+sessionSignup.get('/failed', SessionController.failedSignup)
 
 
 

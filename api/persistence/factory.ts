@@ -3,6 +3,7 @@ import Logger from "../utils/logger"
 import ProductMongoCloudDAO from "./DAOs/products/mongoDbCloud"
 import CartMongoCloudDAO from "./DAOs/cart/mongoDbCloud"
 import OrderMongoCloudDAO from "./DAOs/order/mongoDbCloud"
+import UserMongoCloudDAO from "./DAOs/user/mongoDbCloud"
 
 class PersistenceFactory {
     static getPersistence(persistence: string | number, modelName: any){
@@ -23,6 +24,7 @@ class PersistenceFactory {
                     if (modelName === 'products') { return ProductMongoCloudDAO }
                     if (modelName === 'cart') { return CartMongoCloudDAO }
                     if (modelName === 'order') { return OrderMongoCloudDAO }
+                    if (modelName === 'user') { return UserMongoCloudDAO }
                     break;
             
                 /* case 4:
@@ -33,6 +35,8 @@ class PersistenceFactory {
                 default:
                     if (modelName === 'products') { return ProductMongoCloudDAO }
                     if (modelName === 'cart') { return CartMongoCloudDAO }
+                    if (modelName === 'order') { return OrderMongoCloudDAO }
+                    if (modelName === 'user') { return UserMongoCloudDAO }
                     break;
 
             }

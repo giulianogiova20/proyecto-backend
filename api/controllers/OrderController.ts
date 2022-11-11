@@ -9,11 +9,11 @@ class OrderController {
     async createOrder(req: Request, res: Response) {
         try {
             const user = req.user
-            const order = await OrderService.getProductsByCartId(user)
+            const order = await OrderService.createOrder(user)
             
-            res.redirect('/')
+            return res.status(200).json({Order: order})
         } catch (err) {
-            Logger.error(`Error in getProductsByCartId method, Order Controller: ${err}`)
+            Logger.error(`Error in createOrder method, Order Controller: ${err}`)
         }
     }
 }

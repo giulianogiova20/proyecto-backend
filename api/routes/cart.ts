@@ -3,10 +3,9 @@ import { CartController } from '../controllers'
 
 const CartRouter = Router()
 
-CartRouter.post("/", CartController.createNewCart)
-CartRouter.post("delete", CartController.deleteProductsByCartId)
+CartRouter.delete("/", CartController.deleteProductsByCartId)
 CartRouter.get("/", CartController.getProductsByCartId)
-CartRouter.post("addProduct", CartController.addProductToCartById)
-CartRouter.post("deleteProduct", CartController.deleteProductByCartId)
+CartRouter.post("/:prod_id", CartController.addProductToCartById)
+CartRouter.delete("/:prod_id", CartController.deleteProductByCartId)
 
 export default CartRouter

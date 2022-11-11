@@ -1,25 +1,19 @@
 import { Request, Response, NextFunction } from 'express'
 import MailSender from '../utils/nodemailer'
 import Logger from '../utils/logger'
+import UserService from '../services/UserService'
+import passport from 'passport'
 
 class SessionController {
 	constructor(){}
 
 //LOGIN  
-async login(req: Request, res: Response, next: NextFunction){
+async login(req: Request, res: Response){
     try {
 		if(req.isAuthenticated())
-		next()
+		res.status(200).json({ message: 'user logged'})
 	} catch (error) {
 		Logger.error(`Error when login method in SessionControllers, ${error}`)
-	}
-}
-
-async renderLogin(req: Request, res: Response){
-	if (req.isAuthenticated()) {
-		res.redirect('/')
-	} else {
-		res.render('login')
 	}
 }
 
@@ -38,25 +32,28 @@ async logout(req: Request, res: Response){
 
 
 //SIGNUP
-async renderSignUp(req: Request, res: Response){
+/* async renderSignUp(req: Request, res: Response){
 	if (req.isAuthenticated()) {
 		res.redirect('/')
 	} else {
 		res.render('signup')
 	}
-}
+} */
 
-async signUp(req: Request, res: Response, next: NextFunction){
-	const user = req.user
-	res.status(201).render('createdUser', { user: user })
-	MailSender.newRegister(user)
-	next()
+async signUp(req: Request, res: Response){
+	try {
+		//await passport.authenticate('signup', { failureRedirect: '/signup/failed', failureFlash: true})
+		//MailSender.newRegister(user)
+		res.status(200).json({ message: 'user registered'})
+	} catch (error) {
+		Logger.error(error)
+	}
 }
 
 
 //FAILED SIGNUP
-async renderFailedSignup(req: Request, res: Response){
-	res.status(409).render('failedSignup', { message: req.flash("error")[0] })	
+async failedSignup(req: Request, res: Response){
+	res.status(409).json({ error: req.flash("error")[0]})	
 }
 
 
@@ -66,9 +63,9 @@ async renderFailedLogin(req: Request, res: Response){
 }
 
 //HOME
-async renderHome(req: Request, res: Response){
+/* async renderHome(req: Request, res: Response){
 	res.render('home', {user: req.user})
-  }
+  } */
 
 //UPLOAD
 async renderUpload(req: Request, res: Response){
