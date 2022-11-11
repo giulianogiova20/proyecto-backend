@@ -35,12 +35,18 @@ class OrderMongoDAO extends IOrderDAO {
 
             if( cartProducts.length == 0 ) return { error: 'There is not products in Cart' }
            
-            const orderProducts = cartProducts.map(async (cartProduct: any) =>{
-                const product = await ProductService.getProductById(cartProduct.prod_id) 
-                return product
-
-            })
-            console.log(orderProducts)
+            const orderProducts = await Promise.all(cartProducts.map(async (cartProduct: any) =>{
+                const { name, price, description, photoURL } = await ProductService.getProductById(cartProduct.prod_id) 
+                const orderProduct = { 
+                    name, 
+                    price, 
+                    description, 
+                    photoURL, 
+                    quantity: cartProduct.quantity 
+                }
+                return {...orderProduct}
+            }))
+            
             const newOrder  = await this.orderModel.create(
                 { 
                     user: user.email, 
@@ -50,11 +56,11 @@ class OrderMongoDAO extends IOrderDAO {
             )
 
             //eMail to Admin
-/*             await MailSender.newOrder(user, orderProducts)
+            await MailSender.newOrder(user, orderProducts)
             //SMS to user
             await MessageService.newSMS(user)
             //Whatsapp message to Admin
-            await MessageService.newWhatsapp(user) */
+            await MessageService.newWhatsapp(user)
 
             //Empty cart products
             await CartService.deleteProductsByCartId(user)

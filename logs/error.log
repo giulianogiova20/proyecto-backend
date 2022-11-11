@@ -810,3 +810,8 @@
   level: 'error',
   timestamp: '2022-11-10T21:19:13.740Z'
 }
+{
+  message: "Error in addProductToCartById method: TypeError: Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '2022-11-11T20:21:41.244Z'
+}
