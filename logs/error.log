@@ -762,3 +762,51 @@
   level: 'error',
   timestamp: '2022-11-06T20:44:54.526Z'
 }
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-10T01:54:34.753Z'
+}
+{
+  message: 'Persistence type not found Error: Persistence not found',
+  level: 'error',
+  timestamp: '2022-11-10T01:54:34.822Z'
+}
+{
+  message: 'Error in createNewCart method: TypeError: e.status is not a function',
+  level: 'error',
+  timestamp: '2022-11-10T03:03:50.417Z'
+}
+{
+  message: 'Error in createNewCart method: TypeError: e.status is not a function',
+  level: 'error',
+  timestamp: '2022-11-10T03:08:39.390Z'
+}
+{ level: 'error', timestamp: '2022-11-10T03:11:54.635Z' }
+{ level: 'error', timestamp: '2022-11-10T03:13:50.690Z' }
+{ level: 'error', timestamp: '2022-11-10T03:17:46.335Z' }
+{
+  message: 'MongoAtlas createOrder method error: Error: There is not products in the cart.',
+  level: 'error',
+  timestamp: '2022-11-10T17:35:30.878Z'
+}
+{
+  message: "Error in getProductsByCartId method: TypeError: Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '2022-11-10T18:22:17.209Z'
+}
+{
+  message: "Error in getProductsByCartId method: TypeError: Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '2022-11-10T18:23:04.731Z'
+}
+{
+  message: "MongoAtlas createOrder method error: TypeError: Cannot read properties of undefined (reading 'map')",
+  level: 'error',
+  timestamp: '2022-11-10T21:17:18.692Z'
+}
+{
+  message: "MongoAtlas createOrder method error: TypeError: Cannot read properties of undefined (reading 'map')",
+  level: 'error',
+  timestamp: '2022-11-10T21:19:13.740Z'
+}

@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express'
 import MailSender from '../utils/nodemailer'
 import Logger from '../utils/logger'
+import UserService from '../services/UserService'
+import passport from 'passport'
 
 class SessionController {
 	constructor(){}
@@ -30,17 +32,17 @@ async logout(req: Request, res: Response){
 
 
 //SIGNUP
-async renderSignUp(req: Request, res: Response){
+/* async renderSignUp(req: Request, res: Response){
 	if (req.isAuthenticated()) {
 		res.redirect('/')
 	} else {
 		res.render('signup')
 	}
-}
+} */
 
 async signUp(req: Request, res: Response){
 	try {
-		const user = req.user
+		//await passport.authenticate('signup', { failureRedirect: '/signup/failed', failureFlash: true})
 		//MailSender.newRegister(user)
 		res.status(200).json({ message: 'user registered'})
 	} catch (error) {
@@ -61,9 +63,9 @@ async renderFailedLogin(req: Request, res: Response){
 }
 
 //HOME
-async renderHome(req: Request, res: Response){
+/* async renderHome(req: Request, res: Response){
 	res.render('home', {user: req.user})
-  }
+  } */
 
 //UPLOAD
 async renderUpload(req: Request, res: Response){

@@ -14,6 +14,7 @@ class CartMongoDAO {
   constructor( cartModel: mongoose.Model<any, {}, {}, {}>, DTO: CartDTO ){
     this.model = cartModel
     this.DTO = DTO
+    mongoConnection()
   }
 
   static getInstance(cartModel: mongoose.Model<any, {}, {}, {}>, DTO: any){

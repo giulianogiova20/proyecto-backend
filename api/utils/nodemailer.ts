@@ -55,6 +55,7 @@ class MailSender{
                                 <tr>
                                     <th scope="col">Name</th>
                                     <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
                                     <th scope="col">Description</th>
                                     <th scope="col">Thumbnail</th>
                                 </tr>
@@ -64,6 +65,7 @@ class MailSender{
                                 `<tr>
                                     <td>${product.name}</td>
                                     <td>${product.price}</td>
+                                    <td>${product.quantity}</td>
                                     <td>${product.description}</td>
                                     <td><img style="max-width: 40px" src="${product.photoURL}"></img></td>
                                 </tr>`)}

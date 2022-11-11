@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
   age: { type: Number, required: true },
   phoneNumber: { type: String, required: true },
   picture: { type: String, required: false },
-  isAdmin: { type: String, required: true, default: false },
+  isAdmin: { type: Boolean, required: true, default: false },
 }, { collection: "users" })
 
 
@@ -32,7 +32,6 @@ userSchema.post('save', async function (res: any,next: NextFunction) {
   try {
     const user = {id: this.id, email: this.email}
     await CartController.createNewCart(user, res)
-    next()
   } catch (err: any) {
       next(err)
   }
