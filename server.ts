@@ -15,6 +15,9 @@ import passport from 'passport'
 import { passportLoad } from './api/utils/passport'
 import path from 'path'
 import Logger from './api/utils/logger'
+//Middlewares
+import errorHandler from './api/middlewares/errorHandler'
+import wrongRoute from './api/middlewares/wrongRoute'
 
 declare module 'express-session' {
 	export interface SessionData {
@@ -93,5 +96,11 @@ passportLoad(passport)
 
 //RUTAS
 app.use('/', indexRouter)
+
+//EXTRA ERRORs HANDLER
+app.use(errorHandler)
+
+//WRONG ROUTE
+app.use(wrongRoute)
 
 

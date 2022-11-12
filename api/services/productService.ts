@@ -23,6 +23,11 @@ class ProductService {
         return data
     }
 
+    async getProductByCategory(category: String) {
+        const data = await this.model.getByCategory(category)
+        return data
+    }
+
     async addProduct(product: String){
         const data = await this.model.addProduct(product)
         return data

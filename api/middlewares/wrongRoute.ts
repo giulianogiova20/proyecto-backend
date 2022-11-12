@@ -1,16 +1,10 @@
-import { Request, Response, NextFunction } from 'express';
+import { NextFunction, Request, Response} from 'express'
 
 export default (req: Request, res: Response, next: NextFunction) => {
 
-    if (
-        !req.originalUrl.includes('/api/cart') ||
-        !req.originalUrl.includes('/api/products')
-    ) {
-        return res.status(401).json({
-            error: -2,
-            msg: `${req.method}: ${req.originalUrl} --> Not implemented`,
-        });
-    }
-
-    next()
+    res.status(404).json({
+        status: 404,
+        message: `Route: ${req.originalUrl}, not implemented.`,
+        error: 'Not Found'
+    })
 }

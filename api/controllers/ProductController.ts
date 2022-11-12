@@ -29,6 +29,17 @@ class ProductController {
         }
     }
 
+    async getProductByCategory(req: Request, res: Response) {
+        try {
+            const { category } = req.params
+            const filteredProducts = await ProductService.getProductByCategory(category)
+            if (filteredProducts === undefined || filteredProducts === null || filteredProducts.length === 0) return res.status(404).json({ error: `Cannot find products belonging to ${category} category` })
+            return res.status(200).json({ ProductsByCategories: filteredProducts })
+        } catch (error) {
+            Logger.error(`Error in getById method: ${error}`)
+            return res.status(500).json({ error: 'An error has occurred.' })
+        }
+    }
 
     async addProduct(req: Request, res: Response){
         try {
