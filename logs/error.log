@@ -815,3 +815,18 @@
   level: 'error',
   timestamp: '2022-11-11T20:21:41.244Z'
 }
+{
+  message: 'An error has occured: undefined',
+  level: 'error',
+  timestamp: '2022-11-12T05:20:14.780Z'
+}
+{
+  message: 'An error has occured: undefined',
+  level: 'error',
+  timestamp: '2022-11-12T05:21:23.408Z'
+}
+{
+  message: 'An error has occured: undefined',
+  level: 'error',
+  timestamp: '2022-11-12T05:41:10.303Z'
+}

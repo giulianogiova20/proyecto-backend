@@ -5,7 +5,7 @@ import { SessionController } from "../../controllers"
 export const sessionLogin = Router()
 
 sessionLogin.post('/', passport.authenticate('login', { failureRedirect: '/login/failed', failureFlash: true }), SessionController.login)
-sessionLogin.get('/failed', SessionController.renderFailedLogin)
+sessionLogin.get('/failed', SessionController.failedLogin)
 
 
 
