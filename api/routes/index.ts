@@ -5,6 +5,7 @@ import InfoRouter from './info'
 import { sessionLogin, sessionLogout, sessionSignup } from './session'
 import checkUserAuth from '../middlewares/checkUserAuth'
 import OrderRouter from './order'
+import ChatRouter from './chat'
 
 
 const indexRouter = Router()
@@ -14,7 +15,8 @@ indexRouter.use("/logout", sessionLogout)
 indexRouter.use("/signup", sessionSignup)
 indexRouter.use('/api/products', productsRouter)
 indexRouter.use('/api/cart', cartRouter)
-indexRouter.use('/info', InfoRouter)
+indexRouter.use('/api/info', InfoRouter)
 indexRouter.use('/api/order', OrderRouter)
+indexRouter.use('/api/chat', ChatRouter)
 
 export default indexRouter

@@ -2,7 +2,7 @@
 import express from 'express'
 import session from 'express-session'
 //Server Config
-import persistenceConfig from './api/config'
+import config from './api/config'
 import MongoStore from "connect-mongo"
 import cluster from 'cluster'
 import os from 'os'
@@ -28,10 +28,8 @@ declare module 'express-session' {
 	}
 }
 
-//DOTENV
-const port = process.env.PORT || 8080
-
 //SERVER
+const port = config.PORT || 8080
 const app = express()
 
 if ( process.argv[3] === "cluster" && cluster.isPrimary ) {
@@ -60,7 +58,7 @@ if ( process.argv[3] === "cluster" && cluster.isPrimary ) {
 }
 
 //MIDDLEWARES
-/* app.use(express.static(path.join(__dirname, '../public'))) */
+app.use(express.static(path.join(__dirname, '../public')))
 app.use(express.static(path.join(__dirname, '../uploads')))
 app.use(express.json())//Acceso al rec.body
 app.use(cookieParser())
@@ -70,20 +68,20 @@ app.use(express.urlencoded({ extended: true }))
 app.set('views', path.join(__dirname, '../api/views'))
 app.set('view engine', 'ejs')
 
-const mongoOptions: any = { useNewUrlParser: true, useUnifiedTopology: true }
+const mongoOptions: any = config.MONGO_OPTIONS
 app.use(
     session({
       store: MongoStore.create({
         mongoUrl:
-        persistenceConfig.MONGO_ATLAS_URL,
+        config.MONGO_ATLAS_URL,
         mongoOptions
       }),
-      secret: process.env.SECRET_KEY as string,
+      secret: config.SECRET_KEY as string,
       resave: false,
       saveUninitialized: false,
       rolling: true, // Reinicia el tiempo de expiracion con cada request
       cookie: {
-        maxAge: 600000,
+        maxAge: Number(config.SESSION_TIME),
       },
     })
   )

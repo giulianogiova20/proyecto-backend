@@ -59,8 +59,6 @@ class OrderMongoDAO extends IOrderDAO {
             await MailSender.newOrder(user, orderProducts)
             //SMS to user
             await MessageService.newSMS(user)
-            //Whatsapp message to Admin
-            await MessageService.newWhatsapp(user)
 
             //Empty cart products
             await CartService.deleteProductsByCartId(user)

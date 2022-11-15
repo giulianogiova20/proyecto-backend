@@ -4,40 +4,28 @@ import ProductMongoCloudDAO from "./DAOs/products/mongoDbCloud"
 import CartMongoCloudDAO from "./DAOs/cart/mongoDbCloud"
 import OrderMongoCloudDAO from "./DAOs/order/mongoDbCloud"
 import UserMongoCloudDAO from "./DAOs/user/mongoDbCloud"
+import ChatMongoCloudDAO from "./DAOs/chat/mongoDbCloud"
 
 class PersistenceFactory {
     static getPersistence(persistence: string | number, modelName: any){
         try {
             switch (persistence) {
                 
-                /* case 1:
-                    if (modelName === 'products') { return ProductFilesystemDAO }
-                    if (modelName === 'cart') { return CartFilesystemDAO }
-                    break;
-
-                case 2:
-                    if (modelName === 'products') { return ProductMongoDAO }
-                    if (modelName === 'cart') { return CartMongoDAO }
-                    break; */
-                
-                case 3:
+                case 1:
                     if (modelName === 'products') { return ProductMongoCloudDAO }
                     if (modelName === 'cart') { return CartMongoCloudDAO }
                     if (modelName === 'order') { return OrderMongoCloudDAO }
                     if (modelName === 'user') { return UserMongoCloudDAO }
-                    break;
-            
-                /* case 4:
-                    if (modelName === 'products') { return ProductMySQLDAO }
-                    if (modelName === 'cart') { return CartMySQLDAO }
-                    break; */
+                    if (modelName === 'chat') { return ChatMongoCloudDAO }
+                    break
 
                 default:
                     if (modelName === 'products') { return ProductMongoCloudDAO }
                     if (modelName === 'cart') { return CartMongoCloudDAO }
                     if (modelName === 'order') { return OrderMongoCloudDAO }
                     if (modelName === 'user') { return UserMongoCloudDAO }
-                    break;
+                    if (modelName === 'chat') { return ChatMongoCloudDAO }
+                    break
 
             }
 

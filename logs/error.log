@@ -830,3 +830,32 @@
   level: 'error',
   timestamp: '2022-11-12T05:41:10.303Z'
 }
+{
+  errno: undefined,
+  code: 'ENOTFOUND',
+  syscall: 'querySrv',
+  hostname: '_mongodb._tcp.$cluster0.d9grp.mongodb.net',
+  level: 'error',
+  timestamp: '2022-11-14T22:21:48.701Z'
+}
+{
+  errno: undefined,
+  code: 'ENOTFOUND',
+  syscall: 'querySrv',
+  hostname: '_mongodb._tcp.$cluster0.d9grp.mongodb.net',
+  level: 'error',
+  timestamp: '2022-11-14T22:25:18.150Z'
+}
+{
+  message: 'An error has occured: C:\\Users\\giuli\\Documents\\PROGRAMACION\\BackEnd\\Proyecto_Final\\api\\views\\info.ejs:17\n' +
+    '    15|         <li >\r\n' +
+    '    16|             <h3 >PORT</h3>\r\n' +
+    ' >> 17|             <p><%=config.PORT%></p>\r\n' +
+    '    18|         </li>\r\n' +
+    '    19|         <li >\r\n' +
+    '    20|             <h3 >DATABASE URL</h3>\r\n' +
+    '\n' +
+    'config is not defined',
+  level: 'error',
+  timestamp: '2022-11-14T23:14:30.208Z'
+}

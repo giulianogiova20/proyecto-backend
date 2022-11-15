@@ -32,6 +32,16 @@ class UserMongoDAO extends IUserDAO {
         return data
     }
 
+    public async getUser(user: any) {
+      try {
+        const findUser: any = await this.model.findOne({ email: user.name })
+  
+        if (!findUser) return null
+        return new this.DTO(findUser).chatUser()
+      } catch (error) {
+        Logger.error(`MongoAtlas getUser method error: ${error}`)
+      }
+    }
   
   }
   
