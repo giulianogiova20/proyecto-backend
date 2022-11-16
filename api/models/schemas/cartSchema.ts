@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
 
-
 const CartSchema = new mongoose.Schema({
   products: [{ 
     prod_id: { type: String, required: true }, 

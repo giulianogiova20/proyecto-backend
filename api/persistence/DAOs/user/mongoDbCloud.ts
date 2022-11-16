@@ -3,7 +3,6 @@ import mongoConnection from '../../mongoDB/connection'
 import userModel from "../../../models/schemas/userSchema"
 import IUserDAO from "./IUserDAO"
 import UserDTO from "../../DTOs/UserDTO"
-import passport from "passport"
 import Logger from "../../../utils/logger"
 
 class UserMongoDAO extends IUserDAO {
@@ -32,6 +31,16 @@ class UserMongoDAO extends IUserDAO {
         return data
     }
 
+    public async getUser(user: any) {
+      try {
+        const findUser: any = await this.model.findOne({ email: user.name })
+  
+        if (!findUser) return null
+        return new this.DTO(findUser).chatUser()
+      } catch (error) {
+        Logger.error(`MongoAtlas getUser method error: ${error}`)
+      }
+    }
   
   }
   

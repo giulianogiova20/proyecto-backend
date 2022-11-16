@@ -14,6 +14,10 @@ class UserService {
         return data
     }
 
+    async getUser(user: any){
+        const data = await this.model.getUser(user)
+        return data
+    }
 
 }
 

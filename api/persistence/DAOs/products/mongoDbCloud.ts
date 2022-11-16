@@ -27,25 +27,48 @@ class ProductMongoDAO extends IProductDAO {
   }
 
   public async getAll(): Promise<any[] | any> {
+    try {
       const foundItems = await this.model.find()
       const data: any = foundItems.map( entity => 
       new this.DTO(entity).toJson())
       return data
+    } catch (error) {
+      Logger.error(`MongoAtlas getAll method error: ${error}`)
+    }  
   }
 
   public async getProductById(id: String): Promise<any | Error> {
-
-    if (!mongoose.isValidObjectId(id)) return undefined
+    try {
+      if (!mongoose.isValidObjectId(id)) return undefined
       const foundItem = await this.model.findById(id)
 
-    if (!foundItem) return null
+      if (!foundItem) return null
       return new this.DTO(foundItem).toJson()
+    } catch (error) {
+      Logger.error(`MongoAtlas getProductById method error: ${error}`)
+    }
+  }
+
+  public async getByCategory(category: String): Promise<any | Error> {
+    try {
+      const foundItems = await this.model.find({ category: { $in: `${category}` } })
+      
+      if (!foundItems) return null
+      return foundItems.map(entity => new this.DTO(entity).toJson())
+
+    } catch (error) {
+      Logger.error(`MongoAtlas getById method error: ${error}`)
+    }
   }
 
   async addProduct(product: any): Promise<any | void> {
+    try {
       const productToSave = new this.model(product)
       const data = await productToSave.save()
       return new this.DTO(data).toJson()
+    } catch (error) {
+      Logger.error(`MongoCloud addProduct method error: ${error}`)
+    }  
   }
 
   public async updateProductById(id: any, newData: any): Promise<any> {
@@ -59,7 +82,7 @@ class ProductMongoDAO extends IProductDAO {
       }
      
   } catch (err) {
-    Logger.error(`MongoAtlas updateProductById method error: ${err}`) 
+    Logger.error(`MongoCloud updateProductById method error: ${err}`) 
   }
   }
 
@@ -73,7 +96,7 @@ class ProductMongoDAO extends IProductDAO {
 
       return entity
   } catch (err) {
-    Logger.error(`MongoAtlas deleteProductById method error: ${err}`) 
+    Logger.error(`MongoCloud deleteProductById method error: ${err}`) 
   }
   }
 

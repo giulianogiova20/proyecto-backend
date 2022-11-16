@@ -1,5 +1,3 @@
-//const model = require("../persistence/factory")("cart")
-
 import m from "../persistence/factory"
 const model = m("cart")
 

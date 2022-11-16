@@ -1,0 +1,726 @@
+{
+	"info": {
+		"_postman_id": "fc609554-4fd7-4cee-ba67-f3edbb09bdb0",
+		"name": "Entrega Final",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21470938"
+	},
+	"item": [
+		{
+			"name": "MongoDBCloud",
+			"item": [
+				{
+					"name": "Cart",
+					"item": [
+						{
+							"name": "getProductsByCartId",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Mandalorian Figure",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "price",
+											"value": "14",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "description",
+											"value": "Figure 8\"",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "photoURL",
+											"value": "https://m.media-amazon.com/images/I/61aWsgG0tVL._AC_SX466_.jpg",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "stock",
+											"value": "21",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "2OWwVM6mVjYuMB0Bngir",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "2mDZDTxgAqRLnPCzrDlf",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "id",
+											"value": "2mDZDTxgAqRLnPCzrDlf",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/cart/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"cart",
+										""
+									]
+								},
+								"description": "GET(FB): cart/:id/products"
+							},
+							"response": []
+						},
+						{
+							"name": "CreateCart",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Mandalorian Figure",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "price",
+											"value": "14",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "description",
+											"value": "Figure 8\"",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "photoURL",
+											"value": "https://m.media-amazon.com/images/I/61aWsgG0tVL._AC_SX466_.jpg",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "stock",
+											"value": "21",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "2OWwVM6mVjYuMB0Bngir",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "2mDZDTxgAqRLnPCzrDlf",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "id",
+											"value": "2mDZDTxgAqRLnPCzrDlf",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/cart/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"cart",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addToCartById",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "quantity",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/cart/636f0e5321f97e2f9b38ee05",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"cart",
+										"636f0e5321f97e2f9b38ee05"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addToCartById2",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "quantity",
+											"value": "3",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/cart/636f0f5321f97e2f9b38ee0a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"cart",
+										"636f0f5321f97e2f9b38ee0a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteProducts",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Mandalorian Figure",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "price",
+											"value": "14",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "description",
+											"value": "Figure 8\"",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "photoURL",
+											"value": "https://m.media-amazon.com/images/I/61aWsgG0tVL._AC_SX466_.jpg",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "stock",
+											"value": "21",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "2OWwVM6mVjYuMB0Bngir",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "2mDZDTxgAqRLnPCzrDlf",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "id",
+											"value": "2mDZDTxgAqRLnPCzrDlf",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/cart",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"cart"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteProductByCartId",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Mandalorian Figure",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "price",
+											"value": "14",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "description",
+											"value": "Figure 8\"",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "photoURL",
+											"value": "https://m.media-amazon.com/images/I/61aWsgG0tVL._AC_SX466_.jpg",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "stock",
+											"value": "21",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "2OWwVM6mVjYuMB0Bngir",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "2mDZDTxgAqRLnPCzrDlf",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "id",
+											"value": "2mDZDTxgAqRLnPCzrDlf",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/cart/632e833d00ddfbd0970cb16a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"cart",
+										"632e833d00ddfbd0970cb16a"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Products",
+					"item": [
+						{
+							"name": "getAll",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getById",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/products/636f0e5321f97e2f9b38ee05",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"products",
+										"636f0e5321f97e2f9b38ee05"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProduct",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Vader Figure",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "15",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "6\" Plastic Figure",
+											"type": "text"
+										},
+										{
+											"key": "photoURL",
+											"value": "https://m.media-amazon.com/images/I/91XyD3SUP+L._AC_SL1500_.jpg",
+											"type": "text"
+										},
+										{
+											"key": "stock",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "Figures",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateProduct",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "TIE Fighter Mug",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "price",
+											"value": "9",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Ceramic 0.31L capacity",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "photoURL",
+											"value": "https://m.media-amazon.com/images/I/817Dfo82ttL._AC_SL1500_.jpg",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "stock",
+											"value": "7",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "category",
+											"value": "Figures",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/products/636f0e5321f97e2f9b38ee05",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"products",
+										"636f0e5321f97e2f9b38ee05"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByCategory",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/products/categories/Figures",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"products",
+										"categories",
+										"Figures"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Session",
+					"item": [
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "matias.karraz@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "mk",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "SignUp",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "matias.karraz@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "mk",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Matias",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Gral Paz",
+											"type": "text"
+										},
+										{
+											"key": "age",
+											"value": "54",
+											"type": "text"
+										},
+										{
+											"key": "phoneNumber",
+											"value": "3571564616",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/signup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"signup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:8080/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Order",
+					"item": [
+						{
+							"name": "createOrder",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/order",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"order"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

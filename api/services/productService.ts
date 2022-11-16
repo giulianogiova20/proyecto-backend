@@ -1,6 +1,3 @@
-//const model = require("../persistence/factory")("products")
-import Logger from "../utils/logger"
-
 import m from "../persistence/factory"
 const model = m("products")
 
@@ -20,6 +17,11 @@ class ProductService {
 
     async getProductById(id: String){
         const data = await this.model.getProductById(id)
+        return data
+    }
+
+    async getProductByCategory(category: String) {
+        const data = await this.model.getByCategory(category)
         return data
     }
 
