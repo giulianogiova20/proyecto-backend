@@ -1,22 +1,83 @@
-# Proyecto BACKEND para CoderHouse
+## Proyecto Final
 
-## Tercer Entrega
+---
 
-La estructura es app > route > controller > dao
+Postman Collection included
 
-La app esta diseñada para funcionar con MongoDB como DB sin hacer uso de postman.
 
-Los usuarios registrados tienen hardcodeado +54 como codigo internacional
+**Start APP local**
 
-## TESTS
+Make .env as env.example.
 
-## Artillery test
+npm start || npm start 8080 cluster
 
-artillery quick --count 20 -n 50 http://localhost:8080/api/products > artillery_cluster.txt / artillery_fork.txt
+#### API ROUTES:
 
-<b>Las request dan timeout</b>
+##### PRODUCTS
 
-## Autocannon test
-npm test --> captura autocannon_fork_test.jpg
+- **Get all products**
 
-<b>Las request dan timeout</b>
+  - `GET` | api/products
+
+- **Filter products by category**
+
+  - `GET` | api/products/categories/:category
+
+- **Get product by id**
+
+  - `GET` | api/productos/:id
+
+- **Add a new product**
+
+  - `POST` | api/products
+
+- **Update product by id**
+
+  - `PUT` | api/products/:id
+
+- **Delete product by id**
+  - `DELETE` | api/products/:id
+
+##### CART
+
+*Note: user id is taken from logged user session*
+
+- **Get all products from cart by user id**
+  - `GET` | api/cart
+
+- **Add product to cart by user id**
+
+  - `POST` | api/cart/:id_prod
+
+- **Delete all products from cart by user id**
+
+  - `DELETE` | api/cart/
+
+- **Delete a product from cart by user id**
+  - `DELETE` | api/cart/:id_prod
+
+##### SESSION
+
+- **Login**
+  - `POST` | api/login
+
+- **Logout**
+  - `POST` | api/logout
+
+- **SignUp**
+  - `POST` | api/signup
+
+##### ORDER
+
+- **Create new order**
+  - `POST` | api/order
+
+##### INFO
+
+- **Get server configuration info**
+  - `GET` | api/info
+
+##### CHAT
+
+- **Render chat app**
+  - `GET` | api/chat

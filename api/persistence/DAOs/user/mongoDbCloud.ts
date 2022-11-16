@@ -3,7 +3,6 @@ import mongoConnection from '../../mongoDB/connection'
 import userModel from "../../../models/schemas/userSchema"
 import IUserDAO from "./IUserDAO"
 import UserDTO from "../../DTOs/UserDTO"
-import passport from "passport"
 import Logger from "../../../utils/logger"
 
 class UserMongoDAO extends IUserDAO {

@@ -9,7 +9,7 @@ export const sessionSignup = Router()
 sessionSignup.post('/', passport.authenticate('signup', { failureRedirect: '/signup/failed', failureFlash: true}),async (req,res) => {
   res.status(200).json({ message: 'User registered'})})
 
-
+sessionSignup.get('/upload', SessionController.renderUpload)
 sessionSignup.post('/upload', upload.single('picture'), async (req: any, res: any, next: any) => {
     const file = req.file
     if(!file) {
@@ -20,7 +20,7 @@ sessionSignup.post('/upload', upload.single('picture'), async (req: any, res: an
     try {
         const newData = {
           email: req.user.email,
-          passport: req.user.password,
+          password: req.user.password,
           address: req.user.address,
           age: req.user.age,
           phoneNumber: req.user.phoneNumber,

@@ -3,7 +3,6 @@ import productsRouter from './products'
 import cartRouter from './cart'
 import InfoRouter from './info'
 import { sessionLogin, sessionLogout, sessionSignup } from './session'
-import checkUserAuth from '../middlewares/checkUserAuth'
 import OrderRouter from './order'
 import ChatRouter from './chat'
 

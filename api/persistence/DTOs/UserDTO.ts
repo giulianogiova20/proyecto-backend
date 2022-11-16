@@ -22,15 +22,6 @@ class UserDTO {
         this.isAdmin = user.isAdmin
     }
 
-    chatUser(){
-        const userDisplayed = {
-            id: this.id,
-            email: this.email,
-            isAdmin: this.isAdmin
-        }
-        return userDisplayed
-    }
-
     toJson(){
         const userDisplayed = {
             id: this.id,

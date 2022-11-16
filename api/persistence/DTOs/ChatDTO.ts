@@ -1,20 +1,20 @@
 class ChatDTO {
 
-    user: string
-    messages: [Object]
+    mail: string
+    body: string
     timestamp: string   
     
 
     constructor( chat: any ) {
-        this.user = chat.user 
-        this.messages = chat.messages
+        this.mail = chat.mail 
+        this.body = chat.body
         this.timestamp = chat.timestamp 
     }
 
     toJson(){
         const ChatDisplayed = {
-            user: this.user,
-            messages: this.messages,
+            mail: this.mail,
+            body: this.body,
             timestamp: this.timestamp,
         }
         return ChatDisplayed

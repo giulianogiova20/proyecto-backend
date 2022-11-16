@@ -6,6 +6,8 @@ import config from './api/config'
 import MongoStore from "connect-mongo"
 import cluster from 'cluster'
 import os from 'os'
+//Socket
+import { Server as IOServer } from 'socket.io'
 //Routes
 import indexRouter from './api/routes'
 //Others
@@ -18,6 +20,7 @@ import Logger from './api/utils/logger'
 //Middlewares
 import errorHandler from './api/middlewares/errorHandler'
 import wrongRoute from './api/middlewares/wrongRoute'
+import ChatService from './api/services/ChatService'
 
 declare module 'express-session' {
 	export interface SessionData {
@@ -34,7 +37,7 @@ const app = express()
 
 if ( process.argv[3] === "cluster" && cluster.isPrimary ) {
 
-  const cpuQty = os.cpus().length //Numero de procesadores detectados.
+  const cpuQty = os.cpus().length
   Logger.info(`Number of CPUs: ${cpuQty}`)
   Logger.info(`Master PID ${process.pid} is running`)
 
@@ -46,25 +49,22 @@ if ( process.argv[3] === "cluster" && cluster.isPrimary ) {
     Logger.info(`Worker ${worker.process.pid} died`)
     cluster.fork()
   })
-
-} else {
-
-//Si entramos en modo distinto de CLUSTER o NO es un proceso primario.
-
-  const serverExpress = app.listen(port, () => {
-      Logger.info(`Server listening on port ${port}.`)
-  })
-  serverExpress.on('error', (err) => Logger.error(`An error has ocurred when starting: ${err}`))
 }
+
+const serverExpress = app.listen(port, () => {
+    Logger.info(`Server listening on port ${port}.`)
+})
+serverExpress.on('error', (err) => Logger.error(`An error has ocurred when starting: ${err}`))
+
 
 //MIDDLEWARES
 app.use(express.static(path.join(__dirname, '../public')))
 app.use(express.static(path.join(__dirname, '../uploads')))
-app.use(express.json())//Acceso al rec.body
+app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }))
 
-//CONFIGURACION MOTOR DE PLANTILLAS EJS
+//EJS ENGINE
 app.set('views', path.join(__dirname, '../api/views'))
 app.set('view engine', 'ejs')
 
@@ -79,7 +79,7 @@ app.use(
       secret: config.SECRET_KEY as string,
       resave: false,
       saveUninitialized: false,
-      rolling: true, // Reinicia el tiempo de expiracion con cada request
+      rolling: true,
       cookie: {
         maxAge: Number(config.SESSION_TIME),
       },
@@ -92,8 +92,35 @@ app.use(passport.session())
 app.use(flash())
 passportLoad(passport)
 
-//RUTAS
+//ROUTES
 app.use('/', indexRouter)
+
+//SOCKET
+const io = new IOServer(serverExpress)
+
+io.on('connection', async (socket) => {
+    Logger.info(`New user connected: ${socket.id}`)
+    let messagesArray = await ChatService.getMessages()
+    
+    socket.emit('server:message', messagesArray)
+
+    try {
+        socket.on('client:message', async (newMessage) => {
+            try {
+                await ChatService.addMessage(newMessage)
+                messagesArray = await ChatService.getMessages()
+            } catch (err) {
+                Logger.error(`Error in addMessage socket method: ${err}`)
+            }
+
+            io.emit('server:message', messagesArray)
+        })
+    } catch (err) {
+        Logger.error(`Error at receiving client:message socket method: ${err}`)
+    }
+})
+
+
 
 //EXTRA ERRORs HANDLER
 app.use(errorHandler)

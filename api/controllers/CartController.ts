@@ -13,7 +13,6 @@ class CartController {
     try {
       await CartService.createNewCart(user)
       Logger.info('Cart Created')
-      //return res.status(200).json({ message: 'Cart Created' })
     } catch (error) {
       Logger.error(`Error in createNewCart method: ${error}`)
     }  

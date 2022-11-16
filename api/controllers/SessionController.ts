@@ -23,7 +23,6 @@ async failedLogin(req: Request, res: Response){
 async logout(req: Request, res: Response){
 	try {
 		if(req.isAuthenticated()){
-			const user = req.user
 			req.session.destroy(() => {
 				res.status(201).json({ message: 'user logged out'})
 			})
@@ -35,11 +34,8 @@ async logout(req: Request, res: Response){
 
 
 //SIGNUP
-
 async signUp(req: Request, res: Response){
 	try {
-		//await passport.authenticate('signup', { failureRedirect: '/signup/failed', failureFlash: true})
-		//MailSender.newRegister(user)
 		res.status(200).json({ message: 'user registered'})
 	} catch (error) {
 		Logger.error(`Error in signUp method in SessionControllers, ${error}`)
@@ -50,6 +46,15 @@ async signUp(req: Request, res: Response){
 //FAILED SIGNUP
 async failedSignup(req: Request, res: Response){
 	res.status(409).json({ error: req.flash("error")[0]})	
+}
+
+//UPLOAD
+async renderUpload(req: Request, res: Response){
+	try {
+		res.render('upload')
+	} catch (error) {
+		Logger.error(`Error in renderUpload method in SessionControllers, ${error}`)
+	}	
 }
 
 

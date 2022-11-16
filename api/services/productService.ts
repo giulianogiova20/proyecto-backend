@@ -1,6 +1,3 @@
-//const model = require("../persistence/factory")("products")
-import Logger from "../utils/logger"
-
 import m from "../persistence/factory"
 const model = m("products")
 

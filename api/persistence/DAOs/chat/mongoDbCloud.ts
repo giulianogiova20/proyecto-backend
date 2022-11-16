@@ -3,7 +3,6 @@ import mongoConnection from '../../mongoDB/connection'
 import IChatDAO from './IChatDAO'
 import chatModel from '../../../models/schemas/chatSchema'
 import ChatDTO from '../../DTOs/ChatDTO'
-import { UserService } from '../../../services'
 
 class ChatMongoDAO extends IChatDAO {
 
@@ -25,14 +24,22 @@ class ChatMongoDAO extends IChatDAO {
         return this.instance
       }
 
-    public async addMessage(user: any, newMessage: String, sender: String): Promise<void> {
-        //const findUser = await UserService.getUser(user)
-        const findUser = await this.chatModel.findOne({user: user.name})
-        if (findUser)
-        await
-
+    public async addMessage(newMessage: any): Promise<void> {
+        const dataInput = new this.chatModel(newMessage)
+        await dataInput.save()
     }
     
+    public async getMessages() {
+
+        const foundChat = await this.chatModel.find()
+    
+        if (foundChat === null) throw new Error(`Your chat is empty.`)
+    
+        const data: any = foundChat.map( entity => 
+        new this.DTO(entity).toJson())
+    
+        return data
+      }
 }
 
 export default ChatMongoDAO.getInstance(chatModel, ChatDTO)
